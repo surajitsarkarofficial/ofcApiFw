@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<dataObjects>
+<dataObject>
+	    <dataScenario>Empty Frequent id</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description>Adria Airways</description>
+			<id>23</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>AIRLINE</description>
+			<id>1</id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Empty Frequent Category Description</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description></description>
+			<id>23</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>AIRLINE</description>
+			<id>1</id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Empty Frequent Category id</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description>Adria Airways</description>
+			<id></id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>AIRLINE</description>
+			<id>1</id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Empty Frequent Number Type Description</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description>Adria Airways</description>
+			<id>23</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description></description>
+			<id>1</id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Empty Frequent Number Type id</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description>Adria Airways</description>
+			<id>23</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>AIRLINE</description>
+			<id></id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Empty Frequent Number</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description>Adria Airways</description>
+			<id>23</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>AIRLINE</description>
+			<id>1</id>
+		</frequentNumType>
+		<frequentNumber></frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Invalid Frequent id</dataScenario>
+	    <frequentId>999999</frequentId>
+		<frequentCategory>
+			<description>Adria Airways</description>
+			<id>23</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>AIRLINE</description>
+			<id>1</id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Invalid Frequent Category Description</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description>Adria Airways111</description>
+			<id>23</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>AIRLINE</description>
+			<id>1</id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Invalid Frequent Category id</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description>Adria Airways</description>
+			<id>986</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>AIRLINE</description>
+			<id>1</id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Invalid Frequent Number Type Description</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description>Adria Airways</description>
+			<id>23</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>AIRLINE123</description>
+			<id>1</id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>frequentNumType not found</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Invalid Frequent Number Type id</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description>Adria Airways</description>
+			<id>23</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>AIRLINE</description>
+			<id>790</id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+</dataObjects>

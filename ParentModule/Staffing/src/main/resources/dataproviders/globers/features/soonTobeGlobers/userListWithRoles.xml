@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataObjects>
+	<dataObject>
+		<name>hazel.fernandes</name>
+		<value>Staffing</value>
+		<type>In Pipe</type>
+	</dataObject>
+
+	<dataObject>
+		<name>hazel.fernandes</name>
+		<value>Staffing</value>
+		<type>New Hire</type>
+	</dataObject>
+
+	<dataObject>
+		<name>neha.deshpande</name>
+		<value>Recruiting</value>
+		<type>In Pipe</type>
+	</dataObject>
+
+	<dataObject>
+		<name>neha.deshpande</name>
+		<value>Recruiting</value>
+		<type>New Hire</type>
+	</dataObject>
+</dataObjects>

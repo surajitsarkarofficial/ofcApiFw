@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<userName>daniela.castro</userName>
+		<userRole>staffingRolUser</userRole>
+	</dataObject>
+	<dataObject>
+		<userName>aditya.thatte</userName>
+		<userRole>recruitingRolUser</userRole>
+	</dataObject> 
+	<dataObject>
+		<userName>atul.rane</userName>
+		<userRole>techLeadRolUser</userRole>
+	</dataObject>
+	<dataObject>
+		<userName>anand.datir</userName>
+		<userRole>projectManagerRolUser</userRole>
+	</dataObject>
+	<dataObject>
+		<userName>anagha.pawar</userName>
+		<userRole>techDirectorRolUser</userRole>
+	</dataObject>
+	<dataObject>
+		<userName>susana.bezi</userName>
+		<userRole>deliveryDirector</userRole>
+	</dataObject>
+</dataObjects> 

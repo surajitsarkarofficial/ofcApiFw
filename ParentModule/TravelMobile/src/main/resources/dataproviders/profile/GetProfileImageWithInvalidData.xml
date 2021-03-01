@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+	    <dataScenario>Invalid email id</dataScenario>
+	    <emailId>invalid.glober@globant.com</emailId>
+		<expectedStatusCode>204</expectedStatusCode>
+	</dataObject>
+</dataObjects>

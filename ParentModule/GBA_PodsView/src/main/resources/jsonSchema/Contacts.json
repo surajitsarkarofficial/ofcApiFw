@@ -1,0 +1,64 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "statusCode": {
+      "type": "number",
+      "required": true
+    },
+    "message": {
+      "type": "string",
+      "required": true
+    },
+    "success": {
+      "type": "boolean",
+      "required": true
+    },
+    "errorCode": {
+      "type": "number",
+      "required": true
+    },
+    "data": {
+      "type": "object",
+      "required": true,
+      "additionalProperties": false,
+      "properties": {
+        "contacts": {
+          "type": "array",
+          "minitems": 0,
+          "required": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "clientId": {
+                "type": "number",
+                "required": true
+              },
+              "clientName": {
+                "type": "string",
+                "required": true
+              },
+              "contactRole": {
+                "type": "string",
+                "required": true
+              },
+              "contactEmail": {
+                "type": "string",
+                "required": true
+              },
+              "podsCount": {
+                "type": "number",
+                "required": true
+              }
+            }
+          }
+        },
+        "contactsCount": {
+          "type": "number",
+          "required": true
+        }, 
+      }
+    }
+  }
+}

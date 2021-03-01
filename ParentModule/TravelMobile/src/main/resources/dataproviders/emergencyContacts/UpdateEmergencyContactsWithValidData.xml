@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Update name</dataScenario>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<passengerEmail>surajit.sarkar@globant.com</passengerEmail>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Update relationship</dataScenario>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<passengerEmail>surajit.sarkar@globant.com</passengerEmail>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Update phone number</dataScenario>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<passengerEmail>surajit.sarkar@globant.com</passengerEmail>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Update ISO Country Code</dataScenario>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>US</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<passengerEmail>surajit.sarkar@globant.com</passengerEmail>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Update address</dataScenario>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<passengerEmail>surajit.sarkar@globant.com</passengerEmail>
+	</dataObject>
+</dataObjects>

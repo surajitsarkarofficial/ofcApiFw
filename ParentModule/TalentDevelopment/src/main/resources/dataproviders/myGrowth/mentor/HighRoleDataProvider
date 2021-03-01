@@ -1,0 +1,18 @@
+<dataObjects>
+    <dataObject type="TM">
+        <username>luis.aguilera</username>
+        <globerId>557036171</globerId>
+    </dataObject>
+    <dataObject type="TD">
+        <username>haldo.sponton</username>
+        <globerId>467042932</globerId>
+    </dataObject>
+    <dataObject type="SME">
+        <username>fabiana.tamburrini</username>
+        <globerId>39218346</globerId>
+    </dataObject>
+    <dataObject type="isNotHighRole">
+        <username>gonzalo.perretti</username>
+        <globerId>363800202</globerId>
+    </dataObject>
+</dataObjects>

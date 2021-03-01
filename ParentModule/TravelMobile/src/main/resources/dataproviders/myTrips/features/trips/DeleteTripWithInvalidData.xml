@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Invalid trip id</dataScenario>
+		<tripId>999999999</tripId>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>The trip doesn't exist in the database</expectedMessage>
+	</dataObject>
+</dataObjects>

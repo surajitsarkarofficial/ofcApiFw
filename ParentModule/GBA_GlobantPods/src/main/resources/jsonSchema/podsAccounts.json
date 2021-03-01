@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "statusCode": {
+      "type": "number",
+      "required": true
+    },
+    "message": {
+      "type": "string",
+      "required": true
+    },
+    "success": {
+      "type": "boolean",
+      "required": true
+    },
+    "errorCode": {
+      "type": "number",
+      "required": true
+    },
+    "data": {
+      "type": "object",
+      "required": true,
+      "additionalProperties": false,
+      "properties": {
+        "accounts": {
+          "type": "array",
+          "minitems": 0,
+          "required": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "accountId": {
+                "type": "number",
+                "required": true
+              },
+              "accountName": {
+                "type": "string",
+                "required": true
+              },
+              "clientsCount": {
+                "type": "number",
+                "required": true
+              }
+            }
+          }
+        },
+        "accountsCount": {
+          "type": "number",
+          "required": true
+        },
+        
+      }
+    }
+  }
+}

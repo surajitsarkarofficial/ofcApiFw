@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<globerAssignmentRole>
+		 		<dataObject for = "SuggestAndAssign" type="StaffingAndRecruiting">
+					<name>bernardo.manzella</name>
+					<value>Candidate</value>
+				</dataObject>
+				
+				<dataObject for = "SuggestAndAssign" type="PMAndTD">
+					<name>a.mazumder</name>
+					<value>Candidate</value>
+				</dataObject>
+			
+				<dataObject for = "SuggestAndAssign" type="PMAndTD">
+					<name>anand.datir</name>
+					<value>Candidate</value>
+				</dataObject>
+				
+				<dataObject for = "SuggestAndAssign" type="StaffingAndRecruiting">
+					<name>kapil.kanojiya</name>
+					<value>Candidate</value>
+				</dataObject>
+				
+				<dataObject for="Location">
+					<name>bernardo.manzella</name>
+					<value>UK/GLA</value>
+				</dataObject>
+				
+				<dataObject for="Location">
+					<name>a.mazumder</name>
+					<value>CO/MED</value>
+				</dataObject>
+			
+				<dataObject for="Location">
+					<name>anand.datir</name>
+					<value>IN/PUNE</value>
+				</dataObject>
+				
+				<dataObject for="Timeline">
+					<name>bernardo.manzella</name>
+					<value>30</value>
+				</dataObject>
+				
+				<dataObject for="Timeline">
+					<name>a.mazumder</name>
+					<value>30</value>
+				</dataObject>
+			
+				<dataObject for="Timeline">
+					<name>anand.datir</name>
+					<value>30</value>
+				</dataObject>
+				
+				<dataObject for="Timeline">
+					<name>bernardo.manzella</name>
+					<value>60</value>
+				</dataObject>
+				
+				<dataObject for="Timeline">
+					<name>a.mazumder</name>
+					<value>60</value>
+				</dataObject>
+			
+				<dataObject for="Timeline">
+					<name>anand.datir</name>
+					<value>60</value>
+				</dataObject>
+				
+				<dataObject for="Timeline">
+					<name>bernardo.manzella</name>
+					<value>120</value>
+				</dataObject>
+				
+				<dataObject for="Timeline">
+					<name>a.mazumder</name>
+					<value>120</value>
+				</dataObject>
+			
+				<dataObject for="Timeline">
+					<name>anand.datir</name>
+					<value>120</value>
+				</dataObject>
+				
+	</globerAssignmentRole>
+	
+	<stgAssignmentRoles>
+				<dataObject>
+					<name>bernardo.manzella</name>
+					<value>Candidate</value>
+				</dataObject>
+				<dataObject>
+					<name>bernardo.manzella</name>
+					<value>In Pipe</value>
+				</dataObject>
+				<dataObject>
+					<name>bernardo.manzella</name>
+					<value>Proposal Approved</value>
+				</dataObject>
+				<dataObject>
+					<name>bernardo.manzella</name>
+					<value>New Hire</value>
+				</dataObject>
+				<dataObject type="PMAndTD">
+					<name>a.mazumder</name>
+					<value>New Hire</value>
+				</dataObject>
+				<dataObject type="PMAndTD">
+					<name>a.mazumder</name>
+					<value>Candidate</value>
+				</dataObject>
+				<dataObject type="PMAndTD">
+					<name>a.mazumder</name>
+					<value>In Pipe</value>
+				</dataObject>
+				<dataObject>
+					<name>a.mazumder</name>
+					<value>Proposal Approved</value>
+				</dataObject>
+				<dataObject type="PMAndTD">
+					<name>anand.datir</name>
+					<value>Candidate</value>
+				</dataObject>
+				<dataObject type="PMAndTD">
+					<name>anand.datir</name>
+					<value>In Pipe</value>
+				</dataObject>
+				<dataObject>
+					<name>anand.datir</name>
+					<value>Proposal Approved</value>
+				</dataObject>
+				<dataObject type="PMAndTD">
+					<name>anand.datir</name>
+					<value>New Hire</value>
+				</dataObject>
+	</stgAssignmentRoles>
+</dataObjects>

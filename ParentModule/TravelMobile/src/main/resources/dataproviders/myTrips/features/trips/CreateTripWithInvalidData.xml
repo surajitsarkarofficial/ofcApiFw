@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<!-- Trip with empty trip name -->
+	<dataObject>
+		<dataScenario>Empty trip name</dataScenario>	
+		<tripName></tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail>surajit.sarkar@globant.com</creatorMail>
+		<expectedMessage>Trip name cannot be null or empty.</expectedMessage>
+	</dataObject>
+	<!-- Trip data with empty purpose and goals -->
+	<dataObject>
+		<dataScenario>Empty purpose and goals</dataScenario>
+		<tripName>AutomationTrip_</tripName>
+		<purposeAndGoals></purposeAndGoals>
+		<creatorMail>surajit.sarkar@globant.com</creatorMail>
+		<expectedMessage>Trip purpose and goal cannot be null or empty.</expectedMessage>
+	</dataObject>
+	<!-- Trip with empty creator mail -->
+	<dataObject>	
+		<dataScenario>Empty creator mail</dataScenario>
+		<tripName>AutomationTrip_</tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail></creatorMail>
+		<expectedMessage>Trip creator mail cannot be null or empty.</expectedMessage>
+	</dataObject>
+	<!-- Trip with invalid creator mail -->
+	<dataObject>
+		<dataScenario>Invalid creator mail</dataScenario>	
+		<tripName>AutomationTrip_</tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail>surajit.sarkar</creatorMail>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<!-- Trip with mail id which does not exists -->
+	<dataObject>	
+		<dataScenario>Mail id which does not exists</dataScenario>
+		<tripName>AutomationTrip_</tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail>surajit.sarkar@gmail.com</creatorMail>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	
+</dataObjects>

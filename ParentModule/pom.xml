@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.glow.apiautomation</groupId>
+	<artifactId>ParentModule</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>BaseFramework</module>
+		<module>TestRunners</module>
+		<module>GLOW</module>
+		<module>TravelMobile</module>
+		<module>Delivery</module>
+		<module>Financial</module>
+		<module>Staffing</module>
+		<module>GBA_PodsView</module>
+		<module>TalentDevelopment</module>
+		<module>Purchases</module>
+		<module>GBA_GlobantPods</module>
+		<module>TravelNext</module>
+	</modules>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+</project>

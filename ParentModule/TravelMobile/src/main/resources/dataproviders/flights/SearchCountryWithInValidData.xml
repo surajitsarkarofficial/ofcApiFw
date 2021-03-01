@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+	    <dataScenario>Invalid Country name</dataScenario>
+		<country>Indusa</country>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Search String is less than 3 characters</dataScenario>
+		<country>in</country>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>You must enter at least 3 characters to search</expectedMessage>
+	</dataObject>
+</dataObjects>

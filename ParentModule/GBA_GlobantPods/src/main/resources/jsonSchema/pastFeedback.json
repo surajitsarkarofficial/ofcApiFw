@@ -1,0 +1,107 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "statusCode": {
+      "type": "number",
+      "required": true
+    },
+    "message": {
+      "type": "string",
+      "required": true
+    },
+    "success": {
+      "type": "boolean",
+      "required": true
+    },
+    "errorCode": {
+      "type": "number",
+      "required": true
+    },
+    "data": {
+      "type": "object",
+      "required": true,
+      "additionalProperties": false,
+      "properties": {
+        "podName": {
+          "type": "string",
+          "required": true
+        },
+        "podId": {
+          "type": "number",
+          "required": true
+        },
+        "details": {
+          "type": "array",
+          "minitems": 1,
+          "required": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "year": {
+                "type": "number",
+                "required": true
+              },
+              "month": {
+                "type": "number",
+                "required": true
+              },
+              "feedback": {
+                "type": ["null","object"],
+                "required": true
+              }
+            }
+          }
+        },
+        "graph": {
+          "type": "array",
+          "minitems": 1,
+          "required": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "areaName": {
+                "type": "string",
+                "required": true
+              },
+              "areaId": {
+                "type": "number",
+                "required": true
+              },
+              "areaDetails": {
+                "type": "array",
+                "minitems": 1,
+                "required": true,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "year": {
+                      "type": "number",
+                      "required": true
+                    },
+                    "month": {
+                      "type": "number",
+                      "required": true
+                    },
+                    "rating": {
+                      "type": ["null","string"],
+                      "required": true
+                    },
+                    "date": {
+                      "type":["null","object"],
+                      "required": true
+                    }
+                  }
+                }
+              }
+              
+            }
+          }
+        }
+      }
+    }
+  }
+}

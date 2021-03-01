@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Trip Creation Suite">
+    <groups>
+        <run>
+            <exclude name="DontDeleteTrip"/>
+        </run>
+    </groups>
+
+    <test name="Trip Creation Tests">
+        <classes>
+            <class name="tests.testcases.submodules.tripCreation.TripCreationTest"/>
+        </classes>
+    </test>
+</suite>

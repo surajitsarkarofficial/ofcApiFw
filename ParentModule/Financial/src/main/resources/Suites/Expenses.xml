@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Financial">
+
+  <groups>
+    <run>
+      <exclude name="NotAvailableInPreProd"/>
+      <exclude name="Debug"/>
+    </run>
+  </groups>
+
+  <test name="Expenses">
+        <packages>
+        	<package name="tests.testcases.submodules.expense.features.expense"/>
+        	<package name="tests.testcases.submodules.expense.features.receipt"/>
+            <package name="tests.testcases.submodules.expense.features.report"/>
+            <package name="tests.testcases.submodules.expense.features.addExpenseToReport"/>
+            <package name="tests.testcases.submodules.expense.features.sendToApprove"/>
+            <package name="tests.testcases.submodules.expense.features.approveAsManager"/>
+            <package name="tests.testcases.submodules.expense.features.approveAsFinance"/>
+        </packages>
+  </test>
+
+</suite>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<name>hazel.fernandes</name>
+		<value>Candidate</value>
+	</dataObject>
+	<dataObject>
+		<name>hazel.fernandes</name>
+		<value>In Pipe</value>
+	</dataObject>
+	<dataObject>
+		<name>hazel.fernandes</name>
+		<value>New Hire</value>
+	</dataObject>
+	<dataObject>
+		<name>a.mazumder</name>
+		<value>New Hire</value>
+	</dataObject>
+	<dataObject>
+		<name>a.mazumder</name>
+		<value>Candidate</value>
+	</dataObject>
+	<dataObject>
+		<name>a.mazumder</name>
+		<value>In Pipe</value>
+	</dataObject>
+	<dataObject>
+		<name>anand.datir</name>
+		<value>Candidate</value>
+	</dataObject>
+	<dataObject>
+		<name>anand.datir</name>
+		<value>In Pipe</value>
+	</dataObject>
+	<dataObject>
+		<name>anand.datir</name>
+		<value>New Hire</value>
+	</dataObject>
+
+	<dataObject>
+		<name>neha.deshpande</name>
+		<value>Candidate</value>
+	</dataObject>
+	<dataObject>
+		<name>neha.deshpande</name>
+		<value>In Pipe</value>
+	</dataObject>
+	<dataObject>
+		<name>neha.deshpande</name>
+		<value>New Hire</value>
+	</dataObject>
+
+</dataObjects>
+		
+	

@@ -1,0 +1,7 @@
+/target/
+/test-output/
+/Reports/
+/bin/
+/.classpath
+/PdfReports/
+/Purchases.iml

@@ -1,0 +1,119 @@
+<dataObjects>
+	<dataObject type="positive" randomOrder="true">
+		<seniority>3</seniority>
+		<position>1</position>
+		<location>IN/Pune/Hinjewadi</location>
+		<candidateSkills>1</candidateSkills>
+		<dtoType>FAT</dtoType>
+		<headerKey>token</headerKey>
+		<headerValue>shital.devalkar</headerValue>
+		<interviewDate>0</interviewDate>
+	</dataObject>
+	<dataObject type="positive" randomOrder="true">
+		<seniority>2</seniority>
+		<position>116</position>
+		<location>IN/Pune/Hinjewadi</location>
+		<candidateSkills>1</candidateSkills>
+		<dtoType>FAT</dtoType>
+		<headerKey>token</headerKey>
+		<headerValue>shital.devalkar</headerValue>
+		<interviewDate>0</interviewDate>
+	</dataObject>
+	<dataObject type="positive" randomOrder="true">
+		<seniority>1</seniority>
+		<position>1</position>
+		<location>CO/MED/Medellin</location>
+		<candidateSkills>1</candidateSkills>
+		<dtoType>FAT</dtoType>
+		<headerKey>token</headerKey>
+		<headerValue>shital.devalkar</headerValue>
+		<interviewDate>0</interviewDate>
+	</dataObject>
+	<dataObject type="positive">
+		<seniority>5</seniority>
+		<position>12920413</position>
+		<location>IN/Pune/Hinjewadi</location>
+		<candidateSkills>1</candidateSkills>
+		<dtoType>FAT</dtoType>
+		<headerKey>token</headerKey>
+		<headerValue>shital.devalkar</headerValue>
+		<interviewDate>0</interviewDate>
+	</dataObject>
+	<dataObject type="positive">
+		<seniority>1</seniority>
+		<position>20424204</position>
+		<location>CL/Santiago/Santiago</location>
+		<candidateSkills>1</candidateSkills>
+		<dtoType>THIN</dtoType>
+		<headerKey>token</headerKey>
+		<headerValue>shital.devalkar</headerValue>
+		<interviewDate>0</interviewDate>
+	</dataObject>
+	<dataObject type="positive">
+		<seniority>2</seniority>
+		<position>116</position>
+		<location>UK/LON/PortlandHouse</location>
+		<candidateSkills>1</candidateSkills>
+		<dtoType>FAT</dtoType>
+		<headerKey>token</headerKey>
+		<headerValue>shital.devalkar</headerValue>
+		<interviewDate>0</interviewDate>
+	</dataObject>
+	<dataObject type="negative" invalidProperty="HeaderKey">
+		<seniority>3</seniority>
+		<position>1</position>
+		<location>IN/Pune/Hinjewadi</location>
+		<candidateSkills>1</candidateSkills>
+		<dtoType>THIN</dtoType>
+		<headerKey>tokn</headerKey>
+		<headerValue>shital.devalkar</headerValue>
+		<interviewDate>0</interviewDate>
+	</dataObject>
+	<dataObject type="negative" invalidProperty="HeaderValue">
+		<seniority>3</seniority>
+		<position>1</position>
+		<location>IN/Pune/Hinjewadi</location>
+		<candidateSkills>1</candidateSkills>
+		<dtoType>THIN</dtoType>
+		<headerKey>token</headerKey>
+		<headerValue>globent.user</headerValue>
+		<interviewDate>0</interviewDate>
+	</dataObject>
+	<dataObject for="invalidParameterValue">
+		<dataObject type="positive" data="valid">
+			<seniority>5</seniority>
+			<position>12920413</position>
+			<location>IN/Pune/Hinjewadi</location>
+			<candidateSkills>1</candidateSkills>
+			<dtoType>FAT</dtoType>
+			<headerKey>token</headerKey>
+			<headerValue>shital.devalkar</headerValue>
+			<interviewDate>0</interviewDate>
+		</dataObject>
+		<dataObject type="negative" data="invalidParameterValue">
+			<parameterKey>seniority</parameterKey>
+			<seniority>50</seniority>
+			<message>Not Found Entity with Id</message>
+		</dataObject>
+		<dataObject>
+			<parameterKey>location</parameterKey>
+			<location>IN/Pune/Hinjewad</location>
+			<message>Not Found Entity with location</message>
+		</dataObject>
+		<dataObject>
+			<parameterKey>location</parameterKey>
+			<location>invalidLocationFromDb</location>
+			<message>Not Found Entity with location</message>
+		</dataObject>
+		<dataObject>
+			<parameterKey>location</parameterKey>
+			<location>invalidLocationFromDb</location>
+			<message>Not Found Entity with location</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidParameterValue">
+			<parameterKey>position</parameterKey>
+			<position>10965</position>
+			<message>Not Found Entity with Id</message>
+		</dataObject>
+	</dataObject>
+</dataObjects>

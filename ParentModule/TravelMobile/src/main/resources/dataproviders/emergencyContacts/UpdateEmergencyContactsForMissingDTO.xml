@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Missing 'id' tag in the json body</dataScenario>
+		<id></id>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing 'name' tag in the json body</dataScenario>
+		<id></id>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing 'phoneNumber' tag in the json body</dataScenario>
+		<id></id>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing 'isoCountryCode' tag in the json body</dataScenario>
+		<id></id>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing 'relationship' tag in the json body</dataScenario>
+		<id></id>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing 'address' tag in the json body</dataScenario>
+		<id></id>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+</dataObjects>

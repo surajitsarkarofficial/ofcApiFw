@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+	    <dataScenario>Empty KTN</dataScenario>
+	    <tripId></tripId>
+		<ktn></ktn>
+		<tripPassengerId></tripPassengerId>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Provide KTN for at least one passenger</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>KTN with special characters</dataScenario>
+		<tripId></tripId>
+		<ktn>*()@#_+"',-</ktn>		
+		<tripPassengerId></tripPassengerId>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>known traveler number must be alphanumeric.</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>KTN greater than 15 characters</dataScenario>
+		<tripId></tripId>
+		<ktn>ktnauto972456177</ktn>
+		<tripPassengerId></tripPassengerId>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>known traveler number must be shorter than 15 and alphanumeric.</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Invalid Trip Id</dataScenario>
+	    <tripId>9999999</tripId>
+		<ktn></ktn>
+		<tripPassengerId></tripPassengerId>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Invalid Trip Passenger Id</dataScenario>
+	    <tripId></tripId>
+		<ktn></ktn>
+		<tripPassengerId>999999</tripPassengerId>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+</dataObjects>

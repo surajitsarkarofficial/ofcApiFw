@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Added Passenger</dataScenario>
+		<passengerMailId>mahesh.hatolkar@globant.com</passengerMailId>
+	</dataObject>
+	<dataObject>
+	<dataScenario>Creator of the Trip</dataScenario>
+		<passengerMailId>surajit.sarkar@globant.com</passengerMailId>
+	</dataObject>
+</dataObjects>

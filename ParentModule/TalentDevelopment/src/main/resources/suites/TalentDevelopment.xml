@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="TalentDevelopment">
+    <listeners>
+        <listener class-name="listeners.DisableDataProviderIterationForTalentDevelopment"></listener>
+    </listeners>
+    <test thread-count="5" name="TalentDevelopmentTests">
+        <packages>
+            <package name="tests.testCases.submodules.myGrowth.features.myGrowthAccess"></package>
+            <package name="tests.testCases.submodules.myGrowth.features.progress"></package>
+            <package name="tests.testCases.submodules.myGrowth.features.selfEndorsement"></package>
+            <package name="tests.testCases.submodules.myGrowth.features.workingEcosystem"></package>
+            <package name="tests.testCases.submodules.myGrowth.features.capabilities"></package>
+            <package name="tests.testCases.submodules.myGrowth.features.mentor"></package>
+            <package name="tests.testCases.submodules.myGrowth.features.betterMeIntegration"></package>
+            <package name="tests.testCases.submodules.myGrowth.features.missions"></package>
+        </packages>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

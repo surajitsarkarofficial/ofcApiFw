@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<tripName>AutomationTrip_</tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail>surajit.sarkar@globant.com</creatorMail>
+	</dataObject>
+</dataObjects>

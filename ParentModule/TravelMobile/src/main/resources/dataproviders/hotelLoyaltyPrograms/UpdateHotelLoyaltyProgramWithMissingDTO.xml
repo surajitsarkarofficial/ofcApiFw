@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<dataObjects>
+<dataObject>
+	    <dataScenario>Missing Frequent Id</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description>Marriott Bonvoy</description>
+			<id>1</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>HOTEL</description>
+			<id>2</id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Missing Frequent Category</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description>Marriott Bonvoy</description>
+			<id>1</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>HOTEL</description>
+			<id>2</id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Missing Frequent Number Type</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description>Marriott Bonvoy</description>
+			<id>1</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>HOTEL</description>
+			<id>2</id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Missing Frequent Number</dataScenario>
+	    <frequentId></frequentId>
+		<frequentCategory>
+			<description>Marriott Bonvoy</description>
+			<id>1</id>
+		</frequentCategory>
+		<frequentNumType>
+			<description>HOTEL</description>
+			<id>2</id>
+		</frequentNumType>
+		<frequentNumber>Auto11122</frequentNumber>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+</dataObjects>

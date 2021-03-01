@@ -1,0 +1,11 @@
+<dataObjects>
+    <dataObject type="isAMentor">
+        <username>gonzalo.perretti</username>
+        <mentor>363800202</mentor>
+        <mentee>434922023</mentee>
+        <workingEcosystem>1</workingEcosystem>
+    </dataObject>
+    <dataObject type="isNotAMentor">
+        <username>juan.samboni </username>
+    </dataObject>
+</dataObjects>

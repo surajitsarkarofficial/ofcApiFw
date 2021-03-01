@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Glow-II Sanity Test Suite">
+  <test thread-count="5" name="EditSr Test Suite" preserve-order="true">
+  	<groups>
+  		<run>
+  			<include name = "Smoke"></include>
+  		</run>
+  	</groups>
+    <classes>
+      <class name="tests.testcases.submodules.staffRequest.features.EditSRTest"/>
+    </classes>
+  </test>
+  
+  <test thread-count="5" name="TDC Test Suite" >
+    <groups>
+  		<run>
+  			<include name = "Smoke"></include>
+  		</run>
+  	</groups>
+    <classes>
+       <class name="tests.testcases.submodules.globers.features.TdcTest"/> 
+    </classes>
+  </test>
+</suite>

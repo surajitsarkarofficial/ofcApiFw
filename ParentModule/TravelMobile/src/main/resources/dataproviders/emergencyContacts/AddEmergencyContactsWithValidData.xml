@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<isoCountryCode>IN</isoCountryCode>
+		<passengerEmail>surajit.sarkar@globant.com</passengerEmail>
+	</dataObject>
+</dataObjects>

@@ -1,0 +1,246 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "statusCode": {
+      "type": "number",
+      "required": true
+    },
+    "message": {
+      "type": "string",
+      "required": true
+    },
+    "success": {
+      "type": "boolean",
+      "required": true
+    },
+    "errorCode": {
+      "type": "number",
+      "required": true
+    },
+    "data": {
+      "type": "object",
+      "required": true,
+      "additionalProperties": false,
+      "properties": {
+        "pods": {
+          "type": "array",
+          "minitems": 0,
+          "required": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "clientId": {
+                "type": "number",
+                "required": true
+              },
+              "clientName": {
+                "type": "string",
+                "required": true
+              },
+              "podId": {
+                "type": "number",
+                "required": true
+              },
+              "podLogo": {
+                "type": "string",
+                "required": true
+              },
+              "podName": {
+                "type": "string",
+                "required": true
+              },
+              "isFeedbackRequested": {
+                "type": "boolean",
+                "required": true
+              },
+              "isMember": {
+                "type": "boolean",
+                "required": true
+              },
+              "requestId": {
+                "type": "number",
+                "required": false
+              },
+              "assessmentId": {
+                "type": "number",
+                "required": true
+              },
+              "feedbackCount": {
+                "type": "number",
+                "required": true
+              },
+              "membersCount": {
+                "type": "number",
+                "required": true
+              },
+              "actualMembersCount": {
+                "type": "number",
+                "required": true
+              },
+              "feedbackRequestedDate": {
+                "type": "object",
+                "required": true,
+                "additionalProperties": false,
+                "properties": {
+                  "_seconds": {
+                    "type": "number",
+                    "required": true
+                  },
+                  "_nanoseconds": {
+                    "type": "number",
+                    "required": true
+                  }
+                }
+              },
+              "lastFeedbackDate": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "required": true
+              },
+              "areas": {
+                "type": "array",
+                "minitems": 0,
+                "required": true,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "areaId": {
+                      "type": "number",
+                      "required": true
+                    },
+                    "areaName": {
+                      "type": "string",
+                      "required": true
+                    },
+                    "areaDescription": {
+                      "type": "string",
+                      "required": true
+                    },
+                    "rating": {
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    },
+                    "lastRatedDate": {
+                      "type": "",
+                      "required": true,
+                      "additionalProperties": false,
+                      "properties": {
+                        "_seconds": {
+                          "type": "number",
+                          "required": true
+                        },
+                        "_nanoseconds": {
+                          "type": "number",
+                          "required": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "memberOfCompanion": {
+          "type": "boolean",
+          "required": true
+        },
+        "notificationCount": {
+          "type": "number",
+          "required": true
+        },
+        "accessLevel": {
+          "type": "number",
+          "required": true
+        },
+        "loggedInUserName": {
+          "type": "string",
+          "required": true
+        },
+        "loggedInUserEmail": {
+          "type": "string",
+          "required": true
+        },
+        "loggedInUserAccount": {
+          "type": "string",
+          "required": true
+        },
+        "loggedInContactId": {
+          "type": "number",
+          "required": true
+        },
+        "privacyTouStatus": {
+          "type": "number",
+          "required": true
+        },
+        "privacyTouUpdated": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "required": true
+        },
+        "privacyTouAccepted": {
+          "type": "object",
+          "required": true,
+          "additionalProperties": false,
+          "properties": {
+            "privacyUrl": {
+              "type": "string",
+              "required": true
+            },
+            "privacyVersion": {
+              "type": "string",
+              "required": true
+            },
+            "touVersion": {
+              "type": "string",
+              "required": true
+            },
+            "touUrl": {
+              "type": "string",
+              "required": true
+            },
+            "privacyDate": {
+              "type": "object",
+              "required": true,
+              "additionalProperties": false,
+              "properties": {
+                "_seconds": {
+                  "type": "number",
+                  "required": true
+                },
+                "_nanoseconds": {
+                  "type": "number",
+                  "required": true
+                }
+              }
+            },
+            "touDate": {
+              "type": "object",
+              "required": true,
+              "additionalProperties": false,
+              "properties": {
+                "_seconds": {
+                  "type": "number",
+                  "required": true
+                },
+                "_nanoseconds": {
+                  "type": "number",
+                  "required": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

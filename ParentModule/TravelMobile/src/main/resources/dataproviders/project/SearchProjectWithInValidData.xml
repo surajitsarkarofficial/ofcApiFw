@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+	    <dataScenario>Not existing Project Name</dataScenario>
+		<projectName>GBAGLOBANT</projectName>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>NON existing CLIENT NAME</dataScenario>
+		<projectName>Microsoftss</projectName>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Query Sequency not matching</dataScenario>
+		<projectName>travel gba globant</projectName>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>	
+	<dataObject>
+	    <dataScenario>Search String is less 3 characters</dataScenario>
+		<projectName>Gl</projectName>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>You must enter at least 3 characters to search</expectedMessage>
+	</dataObject>
+</dataObjects>

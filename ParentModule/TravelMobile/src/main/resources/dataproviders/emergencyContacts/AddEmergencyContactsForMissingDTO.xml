@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Missing 'name' tag in the json body</dataScenario>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>Pune</address>
+		<expectedMessage>Invalid parameters</expectedMessage>
+		<expectedStatus>FAILURE</expectedStatus>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing 'relationship' tag in the json body</dataScenario>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>Pune</address>
+		<expectedMessage>Invalid parameters</expectedMessage>
+		<expectedStatus>FAILURE</expectedStatus>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing 'phoneNumber' tag in the json body</dataScenario>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>Pune</address>
+		<expectedMessage>Invalid parameters</expectedMessage>
+		<expectedStatus>FAILURE</expectedStatus>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing 'address' tag in the json body</dataScenario>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>Pune</address>
+		<expectedMessage>Execution Successful</expectedMessage>
+		<expectedStatus>SUCCESS</expectedStatus>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing 'isoCountryCode' tag in the json body</dataScenario>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>Pune</address>
+		<expectedMessage>Invalid parameters</expectedMessage>
+		<expectedStatus>FAILURE</expectedStatus>
+	</dataObject>
+</dataObjects>

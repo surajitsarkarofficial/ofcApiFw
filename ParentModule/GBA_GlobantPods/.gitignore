@@ -1,0 +1,8 @@
+/target/
+/test-output/
+/TestExecutionReport.pdf/
+/.classpath
+/Reports/
+/PdfReports/
+/GBA_GlobantPods.iml
+/bin/

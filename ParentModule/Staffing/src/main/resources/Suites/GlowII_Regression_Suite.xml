@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Glow-II Regression Test Suite">
+	<groups>
+		<run>
+			<include name="Regression"></include>
+		</run>
+	</groups>
+	<test thread-count="3" name="TDC Test Suite">
+		<classes>
+			<class
+				name="tests.testcases.submodules.globers.features.TdcTest" />
+		</classes>
+	</test>
+
+	<test thread-count="1" name="SoonTobeGlobersTest Test Suite">
+		<classes>
+			<class
+				name="tests.testcases.submodules.globers.features.SoonTobeGlobersTest" />
+		</classes>
+	</test>
+
+	<test thread-count="3" name="QuickSuggestAndAssignTest Test Suite">
+		<classes>
+			<class
+				name="tests.testcases.submodules.staffRequest.features.globalstaffrequest.QuickSuggestAndAssignTest" />
+		</classes>
+	</test>
+
+	<test thread-count="3" name="HandlerAndHandlerTeamTest Test Suite">
+		<classes>
+			<class
+				name="tests.testcases.submodules.reports.features.handlerandhandlerteam.HandlerAndHandlerTeamTest" />
+		</classes>
+	</test>
+
+	<test thread-count="3" name="OpenPositionsTests Test Suite">
+		<classes>
+			<class
+				name="tests.testcases.submodules.openpositions.OpenPositionsTests" />
+		</classes>
+	</test>
+
+	<test thread-count="3" name="CancelSr Test Suite">
+		<classes>
+			<class
+				name="tests.testcases.submodules.staffRequest.features.globalstaffrequest.CancelSrTest" />
+		</classes>
+	</test>
+
+	<test thread-count="3" name="ManageWatchers Test Suite">
+		<classes>
+			<class
+				name="tests.testcases.submodules.staffRequest.features.globalstaffrequest.ManageWatchersTests" />
+		</classes>
+	</test>
+
+	<test thread-count="3" name="Top3MatchingGlobers Test Suite">
+		<classes>
+			<class
+				name="tests.testcases.submodules.staffRequest.features.globalstaffrequest.Top3MatchingGlobersTest" />
+		</classes>
+	</test>
+
+	<test thread-count="3" name="TimelineTests Suite">
+		<classes>
+			<class
+				name="tests.testcases.submodules.staffRequest.features.globalstaffrequest.TimelineTests" />
+		</classes>
+	</test>
+</suite>

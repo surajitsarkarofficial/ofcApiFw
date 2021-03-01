@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+	    <dataScenario>Exact Project Name</dataScenario>
+		<projectName>GBA - Travel App - Globant</projectName>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Patial Project Name</dataScenario>
+		<projectName>PSO Google</projectName>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Project Name with Casing ignored</dataScenario>
+		<projectName>gba - tRavel App - Globant</projectName>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Exact Client Name</dataScenario>
+		<projectName>Microsoft</projectName>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Patial Client Name</dataScenario>
+		<projectName>Micr</projectName>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Client Name with Casing ignored</dataScenario>
+		<projectName>micRo</projectName>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>		
+</dataObjects>

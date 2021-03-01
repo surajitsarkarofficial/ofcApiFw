@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="TravelNEXT">
+  <test thread-count="5" name="Profile">
+        <classes>
+            <class name="tests.testcases.submodules.profile.ProfileTests"/>
+        </classes>
+  </test>
+  <test thread-count="5" name="Travel Reasons Tests">
+        <classes>
+            <class name="tests.testcases.submodules.myTrips.features.TravelReasonTests"/>
+        </classes>
+  </test>
+  <test thread-count="5" name="Trips">
+        <classes>
+            <class name="tests.testcases.submodules.myTrips.features.TripTests"/>
+        </classes>
+  </test> 
+  <test thread-count="5" name="Passengers">
+        <classes>
+            <class name="tests.testcases.submodules.myTrips.features.PassengerTests"/>
+        </classes>
+  </test> 
+  <test thread-count="5" name="Watchers">
+        <classes>
+            <class name="tests.testcases.submodules.myTrips.features.WatchersTests"/>
+        </classes>
+  </test> 
+  <test thread-count="5" name="Trip Stepper Info">
+        <classes>
+            <class name="tests.testcases.submodules.myTrips.features.TripStepperInfoTests"/>
+        </classes>
+  </test> 
+  <test thread-count="5" name="Emergency Contacts">
+        <classes>
+            <class name="tests.testcases.submodules.emergencyContacts.EmergencyContactsTests"/>
+        </classes>
+  </test>
+  <test thread-count="5" name="Travel Program">
+        <classes>
+            <class name="tests.testcases.submodules.travelProgram.TravelProgramTests"/>
+        </classes>
+  </test>
+  <test thread-count="5" name="Frequent Flyer Numbers">
+        <classes>
+            <class name="tests.testcases.submodules.frequentFlyerNumbers.FrequentFlyerNumbersTests"/>
+        </classes>
+  </test>
+  <test thread-count="5" name="Hotel Loyalty Programs">
+        <classes>
+            <class name="tests.testcases.submodules.hotelLoyaltyPrograms.HotelLoyaltyProgramsTests"/>
+        </classes>
+  </test>
+  <test thread-count="5" name="Known Traveler Number">
+        <classes>
+            <class name="tests.testcases.submodules.ktn.KtnTests"/>
+        </classes>
+  </test>
+  <test thread-count="5" name="Project">
+        <classes>
+            <class name="tests.testcases.submodules.project.ProjectTests"/>
+        </classes>
+  </test>
+  <test thread-count="5" name="Billabilities">
+        <classes>
+            <class name="tests.testcases.submodules.billabilities.BillabilitiesTests"/>
+        </classes>
+  </test>
+  <test name="Flights">
+        <classes>
+            <class name="tests.testcases.submodules.flights.FlightsTests"/>
+        </classes>
+  </test> 
+  <test name="Services">
+        <classes>
+            <class name="tests.testcases.submodules.services.ServicesTests"/>
+        </classes>
+  </test> 
+  </suite>

@@ -1,0 +1,397 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "array",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": [],
+  "examples": [
+    [
+      {
+        "id": 1,
+        "name": "Software Architecture",
+        "position": {
+          "id": 1,
+          "name": "Software Engineer"
+        },
+        "description": "Refers to the fundamental structures of a software system and the discipline of creating such structures and systems. Each structure comprises software elements, relations among them, and properties of both elements and relations",
+        "areas": [
+          {
+            "id": 15,
+            "name": "Sys Integration",
+            "idPositionCapability": 1,
+            "description": "Knowledge and tools that allow an application to connect with other systems or devices, from web based services to Bluetooth connections.",
+            "level": "5 - Can teach others",
+            "scores": null
+          },
+          {
+            "id": 7,
+            "name": "Architecture Types",
+            "idPositionCapability": 1,
+            "description": "Architecture design patterns, navigation and ui components.",
+            "level": "4 - Can perform without supervision",
+            "scores": null
+          },
+          {
+            "id": 13,
+            "name": "Data Access / Persistency",
+            "idPositionCapability": 1,
+            "description": "Best practices for design and implementation of data access and storage.",
+            "level": "4 - Can perform without supervision",
+            "scores": null
+          },
+          {
+            "id": 14,
+            "name": "Application Lifecycle",
+            "idPositionCapability": 1,
+            "description": "Knowledge of the current ecosystem framework to support application states and life-cycle.",
+            "level": "4 - Can perform without supervision",
+            "scores": null
+          },
+          {
+            "id": 16,
+            "name": "Concurrency",
+            "idPositionCapability": 1,
+            "description": "Multi-threading tasks and performance.",
+            "level": "4 - Can perform without supervision",
+            "scores": null
+          },
+          {
+            "id": 17,
+            "name": "NFRs",
+            "idPositionCapability": 1,
+            "description": "Implementation tasks that don't constitute the actual product functionality such as analytics, performance and security.",
+            "level": "4 - Can perform without supervision",
+            "scores": null
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Software Engineer Practices",
+        "position": {
+          "id": 1,
+          "name": "Software Engineer"
+        },
+        "description": "Is there an \"ideal software development project, and, if so, what are steps you should take to achieve this ideal state? There are strict guidelines and different software development best practices methodologies such as scrum or extreme programming, but I have come to the realization that its not always possible – or wise – to strictly follow these processes.",
+        "areas": [
+          {
+            "id": 9,
+            "name": "(T/B/D)DD",
+            "idPositionCapability": 3,
+            "description": "Test Driven Development, Behavior Driven Development, Domain Driven Design.",
+            "level": "3 - Can perform with limited supervision",
+            "scores": null
+          },
+          {
+            "id": 12,
+            "name": "Specialization",
+            "idPositionCapability": 3,
+            "description": "Particular knowledge used in specific industries or a studio practice.",
+            "level": "3 - Can perform with limited supervision",
+            "scores": null
+          },
+          {
+            "id": 8,
+            "name": "SOLID/DRY",
+            "idPositionCapability": 3,
+            "description": "Programming principles.",
+            "level": "3 - Can perform with limited supervision",
+            "scores": null
+          },
+          {
+            "id": 10,
+            "name": "Design Patterns",
+            "idPositionCapability": 3,
+            "description": "Common software design patterns, creational, behavioral, structural...",
+            "level": "3 - Can perform with limited supervision",
+            "scores": null
+          },
+          {
+            "id": 11,
+            "name": "Algorithm & Structures",
+            "idPositionCapability": 3,
+            "description": "Common algorithms used throughout software engineering such as sorting.",
+            "level": "3 - Can perform with limited supervision",
+            "scores": null
+          }
+        ]
+      }
+    ]
+  ],
+  "additionalItems": true,
+  "items": {
+    "anyOf": [
+      {
+        "$id": "#/items/anyOf/0",
+        "type": "object",
+        "title": "The first anyOf schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": {},
+        "examples": [
+          {
+            "id": 1,
+            "name": "Software Architecture",
+            "position": {
+              "id": 1,
+              "name": "Software Engineer"
+            },
+            "description": "Refers to the fundamental structures of a software system and the discipline of creating such structures and systems. Each structure comprises software elements, relations among them, and properties of both elements and relations",
+            "areas": [
+              {
+                "id": 15,
+                "name": "Sys Integration",
+                "idPositionCapability": 1,
+                "description": "Knowledge and tools that allow an application to connect with other systems or devices, from web based services to Bluetooth connections.",
+                "level": "5 - Can teach others",
+                "scores": null
+              },
+              {
+                "id": 7,
+                "name": "Architecture Types",
+                "idPositionCapability": 1,
+                "description": "Architecture design patterns, navigation and ui components.",
+                "level": "4 - Can perform without supervision",
+                "scores": null
+              },
+              {
+                "id": 13,
+                "name": "Data Access / Persistency",
+                "idPositionCapability": 1,
+                "description": "Best practices for design and implementation of data access and storage.",
+                "level": "4 - Can perform without supervision",
+                "scores": null
+              },
+              {
+                "id": 14,
+                "name": "Application Lifecycle",
+                "idPositionCapability": 1,
+                "description": "Knowledge of the current ecosystem framework to support application states and life-cycle.",
+                "level": "4 - Can perform without supervision",
+                "scores": null
+              },
+              {
+                "id": 16,
+                "name": "Concurrency",
+                "idPositionCapability": 1,
+                "description": "Multi-threading tasks and performance.",
+                "level": "4 - Can perform without supervision",
+                "scores": null
+              },
+              {
+                "id": 17,
+                "name": "NFRs",
+                "idPositionCapability": 1,
+                "description": "Implementation tasks that don't constitute the actual product functionality such as analytics, performance and security.",
+                "level": "4 - Can perform without supervision",
+                "scores": null
+              }
+            ]
+          }
+        ],
+        "required": [
+          "id",
+          "name",
+          "position",
+          "description",
+          "areas"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "id": {
+            "$id": "#/items/anyOf/0/properties/id",
+            "type": "integer",
+            "title": "The id schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          },
+          "name": {
+            "$id": "#/items/anyOf/0/properties/name",
+            "type": "string",
+            "title": "The name schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+              "Software Architecture"
+            ]
+          },
+          "position": {
+            "$id": "#/items/anyOf/0/properties/position",
+            "type": "object",
+            "title": "The position schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+              {
+                "id": 1,
+                "name": "Software Engineer"
+              }
+            ],
+            "required": [
+              "id",
+              "name"
+            ],
+            "additionalProperties": true,
+            "properties": {
+              "id": {
+                "$id": "#/items/anyOf/0/properties/position/properties/id",
+                "type": "integer",
+                "title": "The id schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0,
+                "examples": [
+                  1
+                ]
+              },
+              "name": {
+                "$id": "#/items/anyOf/0/properties/position/properties/name",
+                "type": "string",
+                "title": "The name schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                  "Software Engineer"
+                ]
+              }
+            }
+          },
+          "description": {
+            "$id": "#/items/anyOf/0/properties/description",
+            "type": "string",
+            "title": "The description schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+              "Refers to the fundamental structures of a software system and the discipline of creating such structures and systems. Each structure comprises software elements, relations among them, and properties of both elements and relations"
+            ]
+          },
+          "areas": {
+            "$id": "#/items/anyOf/0/properties/areas",
+            "type": "array",
+            "title": "The areas schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+              [
+                {
+                  "id": 15,
+                  "name": "Sys Integration",
+                  "idPositionCapability": 1,
+                  "description": "Knowledge and tools that allow an application to connect with other systems or devices, from web based services to Bluetooth connections.",
+                  "level": "5 - Can teach others",
+                  "scores": null
+                },
+                {
+                  "id": 7,
+                  "name": "Architecture Types",
+                  "idPositionCapability": 1,
+                  "description": "Architecture design patterns, navigation and ui components.",
+                  "level": "4 - Can perform without supervision",
+                  "scores": null
+                }
+              ]
+            ],
+            "additionalItems": true,
+            "items": {
+              "anyOf": [
+                {
+                  "$id": "#/items/anyOf/0/properties/areas/items/anyOf/0",
+                  "type": "object",
+                  "title": "The first anyOf schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "examples": [
+                    {
+                      "id": 15,
+                      "name": "Sys Integration",
+                      "idPositionCapability": 1,
+                      "description": "Knowledge and tools that allow an application to connect with other systems or devices, from web based services to Bluetooth connections.",
+                      "level": "5 - Can teach others",
+                      "scores": null
+                    }
+                  ],
+                  "required": [
+                    "id",
+                    "name",
+                    "idPositionCapability",
+                    "description",
+                    "level",
+                    "scores"
+                  ],
+                  "additionalProperties": true,
+                  "properties": {
+                    "id": {
+                      "$id": "#/items/anyOf/0/properties/areas/items/anyOf/0/properties/id",
+                      "type": "integer",
+                      "title": "The id schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": 0,
+                      "examples": [
+                        15
+                      ]
+                    },
+                    "name": {
+                      "$id": "#/items/anyOf/0/properties/areas/items/anyOf/0/properties/name",
+                      "type": "string",
+                      "title": "The name schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": "",
+                      "examples": [
+                        "Sys Integration"
+                      ]
+                    },
+                    "idPositionCapability": {
+                      "$id": "#/items/anyOf/0/properties/areas/items/anyOf/0/properties/idPositionCapability",
+                      "type": "integer",
+                      "title": "The idPositionCapability schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": 0,
+                      "examples": [
+                        1
+                      ]
+                    },
+                    "description": {
+                      "$id": "#/items/anyOf/0/properties/areas/items/anyOf/0/properties/description",
+                      "type": "string",
+                      "title": "The description schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": "",
+                      "examples": [
+                        "Knowledge and tools that allow an application to connect with other systems or devices, from web based services to Bluetooth connections."
+                      ]
+                    },
+                    "level": {
+                      "$id": "#/items/anyOf/0/properties/areas/items/anyOf/0/properties/level",
+                      "type": "string",
+                      "title": "The level schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": "",
+                      "examples": [
+                        "5 - Can teach others"
+                      ]
+                    },
+                    "scores": {
+                      "$id": "#/items/anyOf/0/properties/areas/items/anyOf/0/properties/scores",
+                      "type": "null",
+                      "title": "The scores schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": null,
+                      "examples": [
+                        null
+                      ]
+                    }
+                  }
+                }
+              ],
+              "$id": "#/items/anyOf/0/properties/areas/items"
+            }
+          }
+        }
+      }
+    ],
+    "$id": "#/items"
+  }
+}

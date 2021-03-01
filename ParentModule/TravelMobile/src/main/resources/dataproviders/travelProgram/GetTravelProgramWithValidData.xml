@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<programType>AIRLINE</programType>
+	</dataObject>
+	<dataObject>
+		<programType>HOTEL</programType>
+	</dataObject>
+</dataObjects>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Glow 6 Sanity Test Suite">
+
+	<listeners>
+		<listener
+			class-name="listeners.DisableDataProviderIterationsForStaffing"></listener>
+	</listeners>
+
+	<test name="Create SR" group-by-instances="true" time-out="14400000">
+	<groups>
+	<run>
+	<include name="Sanity"></include>
+	</run>
+	</groups>
+		<classes>
+			<class name="tests.testcases.submodules.staffRequest.features.CreateNewPositionTests"/>
+		</classes>
+	</test>
+	
+	<test name="Edit SR" group-by-instances="true" time-out="14400000">
+	<groups>
+	<run>
+	<include name="Sanity"></include>
+	</run>
+	</groups>
+		<classes>
+			<class name="tests.testcases.submodules.staffRequest.features.EditSRRevampTests"/>
+		</classes>
+	</test>
+	
+	<test name="Client interview feedback" group-by-instances="true" time-out="14400000">
+	<groups>
+	<run>
+	<include name="Sanity"></include>
+	</run>
+	</groups>
+		<classes>
+      		<class name="tests.testcases.submodules.staffRequest.features.ClientInterviewFeedbackTests"/>
+		</classes>
+	</test>
+	
+	<test name="Suggest Glober" group-by-instances="true" time-out="14400000">
+	<groups>
+	<run>
+	<include name="Sanity"></include>
+	</run>
+	</groups>
+		<classes>
+      		<class name="tests.testcases.submodules.staffRequest.features.SuggestGloberTests"/>
+		</classes>
+	</test>
+	
+	<test name="Mark glober fit" group-by-instances="true" time-out="14400000">
+	<groups>
+	<run>
+	<include name="Sanity"></include>
+	</run>
+	</groups>
+		<classes>
+			<class name="tests.testcases.submodules.staffRequest.features.MarkGloberFitTests"/>
+		</classes>
+	</test>
+	
+	<test name="Request Extension" group-by-instances="true" time-out="14400000">
+	<groups>
+	<run>
+	<include name="Sanity"></include>
+	</run>
+	</groups>
+		<classes>
+			<class name="tests.testcases.submodules.staffRequest.features.RequestExtensionTests"/>
+		</classes>
+	</test>
+	
+	<test name="Glober project history" group-by-instances="true" time-out="14400000">
+	<groups>
+	<run>
+	<include name="Sanity"></include>
+	</run>
+	</groups>
+		<classes>
+			<class name="tests.testcases.submodules.globers.features.GloberHistoryTests"/>
+		</classes>
+	</test>
+	
+	<test name="Matching Summary Tests" group-by-instances="true" time-out="14400000">
+	<groups>
+	<run>
+	<include name="Sanity"></include>
+	</run>
+	</groups>
+		<classes>
+			<class name="tests.testcases.submodules.staffRequest.features.globalstaffrequest.MatchingSummaryTests"/>
+		</classes>
+	</test>
+	
+	<test name="Global Talent pool Count" group-by-instances="true" time-out="14400000">
+	<groups>
+	<run>
+	<include name="Sanity"></include>
+	</run>
+	</groups>
+		<classes>
+			<class name="tests.testcases.submodules.globers.features.GlobalTalentPoolTests"></class>
+		</classes>
+	</test>
+</suite>

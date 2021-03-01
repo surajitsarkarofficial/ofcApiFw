@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Invalid Trip Passenger Id</dataScenario>
+		<tripPassengerId></tripPassengerId>
+		<passengerEmail>mahesh.hatolkar@globant.com</passengerEmail>
+		<status>FAILURE</status>
+		<expectedMessage>Passenger not found</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Already existing Passenger email</dataScenario>
+		<tripPassengerId></tripPassengerId>
+		<passengerEmail>surajit.sarkar@globant.com</passengerEmail>
+		<status>FAILURE</status>
+		<expectedMessage>The passenger is already associated to the trip</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Invalid Passenger email</dataScenario>
+		<tripPassengerId></tripPassengerId>
+		<passengerEmail>surajit.sarkar123@globant.com</passengerEmail>
+		<status>FAILURE</status>
+		<expectedMessage>The new trip passenger does not exist</expectedMessage>
+	</dataObject>
+</dataObjects>

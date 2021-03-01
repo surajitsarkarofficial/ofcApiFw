@@ -1,0 +1,83 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "statusCode": {
+      "type": "number",
+      "required": true
+    },
+    "message": {
+      "type": "string",
+      "required": true
+    },
+    "success": {
+      "type": "boolean",
+      "required": true
+    },
+    "errorCode": {
+      "type": "number",
+      "required": true
+    },
+    "data": {
+      "type": "object",
+      "required": true,
+      "additionalProperties": false,
+      "properties": {
+        "podId": {
+          "type": "number",
+          "required": true
+        },
+        "membersCount": {
+          "type": "number",
+          "required": true
+        },
+        "podName": {
+          "type": "string",
+          "required": true
+        },
+        "members": {
+          "type": "array",
+          "minitems": 0,
+          "required": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "required": true
+              },
+              "email": {
+                "type": "string",
+                "required": true
+              },
+              "profilePic": {
+                "type": "string",
+                "required": true
+              },
+              "role": {
+                "type": "array",
+                "minitems": 0,
+                "required": true,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "required": true
+                    },
+                    "id": {
+                      "type": "number",
+                      "required": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

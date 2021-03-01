@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Empty Passenger Email</dataScenario>
+		<passengerMailId></passengerMailId>
+		<tripId></tripId>
+		<expectedMessage>Email id can not be null or empty</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Invalid Passenger email</dataScenario>
+		<passengerMailId>preshit.sasane937@globant.com</passengerMailId>
+		<tripId></tripId>
+		<expectedMessage>Passenger is not valid</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Invalid Trip Id</dataScenario>
+		<passengerMailId>mahesh.hatolkar@globant.com</passengerMailId>
+		<tripId>99999</tripId>
+		<expectedMessage>The given trip Id 99999 is invalid</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Existing Passenger</dataScenario>
+		<passengerMailId>mahesh.hatolkar@globant.com</passengerMailId>
+		<tripId></tripId>
+		<expectedMessage>already added as passenger for trip</expectedMessage>
+	</dataObject>
+</dataObjects>

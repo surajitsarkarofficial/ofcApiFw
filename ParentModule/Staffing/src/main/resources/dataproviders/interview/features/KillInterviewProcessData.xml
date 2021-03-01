@@ -1,0 +1,22 @@
+<dataObjects>
+	<dataObject for="parameterValue">
+		<dataObject type="positive" data="validParameterValue">
+			<cancelInterview>True</cancelInterview>
+		</dataObject>
+		<dataObject type="negative" invalidProperty="HeaderValue">
+			<parameterKey>headerValue</parameterKey>
+			<headerValue>ankita.jog</headerValue>
+			<message>User is not having valid permission or role</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidParameterValue">
+			<parameterKey>cancelInterview</parameterKey>
+			<cancelInterview>treu</cancelInterview>
+			<message>invalid parameter format Invalid boolean value [treu]</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidParameterValue">
+			<parameterKey>performNotification</parameterKey>
+			<performNotification>fasle</performNotification>
+			<message>invalid parameter format Invalid boolean value [fasle]</message>
+		</dataObject>
+	</dataObject>
+</dataObjects>

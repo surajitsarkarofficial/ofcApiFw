@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Glow 6 Regression Test Suite" parallel="false">
+   <test name="Create SR">
+    	<classes>
+     		 <class name="tests.testcases.submodules.staffRequest.features.CreateNewPositionTests"/>
+    	</classes>
+   </test> 
+   
+   <test name="Client Interview Feedback">
+    	<classes>
+      		<class name="tests.testcases.submodules.staffRequest.features.ClientInterviewFeedbackTests"/>
+    	</classes>
+   </test>
+   
+   <test name="Suggest Glober">
+    	<classes>
+      		<class name="tests.testcases.submodules.staffRequest.features.SuggestGloberTests"/>
+    	</classes>
+   </test> 
+   
+   <test name="Edit SR">
+   		<classes>
+   			<class name="tests.testcases.submodules.staffRequest.features.EditSRRevampTests"/>
+   	 	</classes> 
+   </test> 
+   
+   <test name="Mark glober fit/Unfit">
+    	<classes>
+    		<class name="tests.testcases.submodules.staffRequest.features.MarkGloberFitTests"/>
+     	</classes>
+   </test> 
+   
+   <test name="Request Extension">
+   		<classes>
+      		<class name="tests.testcases.submodules.staffRequest.features.RequestExtensionTests"/>
+     	</classes>
+   </test>
+   
+   <test name="Matching Summary Tests">
+   	 	<classes>
+   	 		<class name="tests.testcases.submodules.staffRequest.features.globalstaffrequest.MatchingSummaryTests"></class>
+     	</classes>
+    </test> 
+   
+   <test name="Glober history">
+  	 	 <classes>
+    		  <class name="tests.testcases.submodules.globers.features.GloberHistoryTests"/>
+     	</classes>
+   </test> 
+   
+   <test name="Global Talent pool">
+   	 	<classes>
+   	 		<class name="tests.testcases.submodules.globers.features.GlobalTalentPoolTests"></class>
+     	</classes>
+    </test> 
+</suite>

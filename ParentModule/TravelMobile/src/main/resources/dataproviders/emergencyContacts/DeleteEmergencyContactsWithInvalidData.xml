@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Already Deleted Emergency Contact id</dataScenario>
+		<emergencyContactId></emergencyContactId>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Emergency Contact not Found</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Not Emergency Contact id</dataScenario>
+		<emergencyContactId>99999</emergencyContactId>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Emergency Contact not Found</expectedMessage>
+	</dataObject>
+</dataObjects>

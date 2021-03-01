@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+	    <dataScenario>Exact Country Name</dataScenario>
+		<country>India</country>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Partial Country Name</dataScenario>
+		<country>Ind</country>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Country name with casing ignored</dataScenario>
+		<country>inDIa</country>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+</dataObjects>

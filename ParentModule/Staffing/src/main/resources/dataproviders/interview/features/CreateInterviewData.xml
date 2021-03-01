@@ -1,0 +1,282 @@
+<dataObjects>
+	<dataObject type="positive">
+		<headerKey>token</headerKey>
+		<headerValue>ankita.jog</headerValue>
+		<recruiterId>1317142609</recruiterId>
+		<recruiterUsername>deepakkumar.hadiya</recruiterUsername>
+		<candidateId>200</candidateId>
+		<candidateGlobalId>1000</candidateGlobalId>
+		<hrFeedback>Screening has been Completed</hrFeedback>
+		<applyPosition>1</applyPosition>
+		<applySeniority>3</applySeniority>
+		<interviewDate>1607746500000</interviewDate>
+		<location>IN/Pune/Hinjewadi</location>
+		<candidateName>Automation user1</candidateName>
+		<interviewType>1</interviewType>
+		<englishLevel>10</englishLevel>
+		<curriculum>http://ssff.com/12345</curriculum>
+		<candidateEmail>Automation.user1@gmail.com</candidateEmail>
+		<discardReason>Not specified</discardReason>
+	</dataObject>
+	<dataObject type="positive">
+		<headerKey>token</headerKey>
+		<headerValue>ankita.jog</headerValue>
+		<recruiterId>1317142609</recruiterId>
+		<recruiterUsername>deepakkumar.hadiya</recruiterUsername>
+		<candidateId>200</candidateId>
+		<candidateGlobalId>1000</candidateGlobalId>
+		<hrFeedback>Screening has been Completed</hrFeedback>
+		<applyPosition>128</applyPosition>
+		<applySeniority>1</applySeniority>
+		<interviewDate>1607746500000</interviewDate>
+		<location>IN/Pune/Hinjewadi</location>
+		<candidateName>Automation user2</candidateName>
+		<interviewType>1</interviewType>
+		<englishLevel>10</englishLevel>
+		<curriculum>http://ssff.com/12345</curriculum>
+		<candidateEmail>Automation.user2@gmail.com</candidateEmail>
+		<discardReason>Not specified</discardReason>
+	</dataObject>
+	<dataObject type="positive">
+		<headerKey>token</headerKey>
+		<headerValue>ankita.jog</headerValue>
+		<recruiterId>1317142609</recruiterId>
+		<recruiterUsername>deepakkumar.hadiya</recruiterUsername>
+		<candidateId>200</candidateId>
+		<candidateGlobalId>1000</candidateGlobalId>
+		<hrFeedback>Screening has been Completed</hrFeedback>
+		<applyPosition>116</applyPosition>
+		<applySeniority>2</applySeniority>
+		<interviewDate>1607746500000</interviewDate>
+		<location>IN/Pune/Hinjewadi</location>
+		<candidateName>Automation user11</candidateName>
+		<interviewType>1</interviewType>
+		<englishLevel>10</englishLevel>
+		<curriculum>http://ssff.com/12345</curriculum>
+		<candidateEmail>Automation.user11</candidateEmail>
+		<discardReason>Not specified</discardReason>
+	</dataObject>
+	<dataObject type="positive">
+		<headerKey>token</headerKey>
+		<headerValue>ankita.jog</headerValue>
+		<recruiterId>1317142609</recruiterId>
+		<recruiterUsername>deepakkumar.hadiya</recruiterUsername>
+		<candidateId>200</candidateId>
+		<candidateGlobalId>1000</candidateGlobalId>
+		<hrFeedback>Screening has been Completed</hrFeedback>
+		<applyPosition>115</applyPosition>
+		<applySeniority>4</applySeniority>
+		<interviewDate>1607746500000</interviewDate>
+		<location>IN/Pune/Hinjewadi</location>
+		<candidateName>Automation user21</candidateName>
+		<interviewType>1</interviewType>
+		<englishLevel>10</englishLevel>
+		<curriculum>http://ssff.com/12345</curriculum>
+		<candidateEmail>Automation.user21@gmail.com</candidateEmail>
+		<discardReason>Not specified</discardReason>
+	</dataObject>
+	<dataObject type="positive">
+		<headerKey>token</headerKey>
+		<headerValue>ankita.jog</headerValue>
+		<recruiterId>1317142609</recruiterId>
+		<recruiterUsername>deepakkumar.hadiya</recruiterUsername>
+		<candidateId>200</candidateId>
+		<candidateGlobalId>1000</candidateGlobalId>
+		<hrFeedback>Screening has been Completed</hrFeedback>
+		<applyPosition>1</applyPosition>
+		<applySeniority>1</applySeniority>
+		<interviewDate>1607746500000</interviewDate>
+		<location>AR/CABA/Laminar</location>
+		<candidateName>Automation user31</candidateName>
+		<interviewType>1</interviewType>
+		<englishLevel>10</englishLevel>
+		<curriculum>http://ssff.com/12345</curriculum>
+		<candidateEmail>Automation.user31@gmail.com</candidateEmail>
+		<discardReason>Not specified</discardReason>
+	</dataObject>
+	<dataObject type="positive">
+		<headerKey>token</headerKey>
+		<headerValue>ankita.jog</headerValue>
+		<recruiterId>1317142609</recruiterId>
+		<recruiterUsername>deepakkumar.hadiya</recruiterUsername>
+		<candidateId>200</candidateId>
+		<candidateGlobalId>1000</candidateGlobalId>
+		<hrFeedback>Screening has been Completed</hrFeedback>
+		<applyPosition>32933469</applyPosition>
+		<applySeniority>1</applySeniority>
+		<interviewDate>1607746500000</interviewDate>
+		<location>MX/DF/DF</location>
+		<candidateName>Automation user23</candidateName>
+		<interviewType>1</interviewType>
+		<englishLevel>10</englishLevel>
+		<curriculum>http://ssff.com/12345</curriculum>
+		<candidateEmail>Automation.user23@gmail.com</candidateEmail>
+		<discardReason>Not specified</discardReason>
+	</dataObject>
+	<dataObject type="negative" data="valid">
+		<headerKey>token</headerKey>
+		<headerValue>ankita.jog</headerValue>
+		<recruiterId>1317142609</recruiterId>
+		<recruiterUsername>deepakkumar.hadiya</recruiterUsername>
+		<candidateId>200</candidateId>
+		<candidateGlobalId>1000</candidateGlobalId>
+		<hrFeedback>Screening has been Completed</hrFeedback>
+		<applyPosition>1</applyPosition>
+		<applySeniority>3</applySeniority>
+		<interviewDate>1607746500000</interviewDate>
+		<location>IN/Pune/Hinjewadi</location>
+		<candidateName>Automation user3</candidateName>
+		<interviewType>1</interviewType>
+		<englishLevel>10</englishLevel>
+		<curriculum>http://ssff.com/12345</curriculum>
+		<candidateEmail>rahul.patil@gmail.com</candidateEmail>
+		<discardReason>Not specified</discardReason>
+	</dataObject>
+	<dataObject type="negative" invalidProperty="HeaderKey">
+		<headerKey>tokn</headerKey>
+		<headerValue>ankita.jog</headerValue>
+		<recruiterId>1317142609</recruiterId>
+		<recruiterUsername>deepakkumar.hadiya</recruiterUsername>
+		<candidateId>200</candidateId>
+		<candidateGlobalId>1000</candidateGlobalId>
+		<hrFeedback>Screening has been Completed</hrFeedback>
+		<applyPosition>1</applyPosition>
+		<applySeniority>3</applySeniority>
+		<interviewDate>1607746500000</interviewDate>
+		<location>IN/Pune/Hinjewadi</location>
+		<candidateName>Automation user4</candidateName>
+		<interviewType>1</interviewType>
+		<englishLevel>10</englishLevel>
+		<curriculum>http://ssff.com/12345</curriculum>
+		<candidateEmail>rahul.patil@gmail.com</candidateEmail>
+		<discardReason>Not specified</discardReason>
+	</dataObject>
+	<dataObject type="negative" invalidProperty="HeaderValue">
+		<headerKey>token</headerKey>
+		<headerValue>ankita.jogi</headerValue>
+		<recruiterId>1317142609</recruiterId>
+		<recruiterUsername>deepakkumar.hadiya</recruiterUsername>
+		<candidateId>200</candidateId>
+		<candidateGlobalId>1000</candidateGlobalId>
+		<hrFeedback>Screening has been Completed</hrFeedback>
+		<applyPosition>1</applyPosition>
+		<applySeniority>3</applySeniority>
+		<interviewDate>1607746500000</interviewDate>
+		<location>IN/Pune/Hinjewadi</location>
+		<candidateName>Automation user5</candidateName>
+		<interviewType>1</interviewType>
+		<englishLevel>10</englishLevel>
+		<curriculum>http://ssff.com/12345</curriculum>
+		<candidateEmail>rahul.patil@gmail.com</candidateEmail>
+		<discardReason>Not specified</discardReason>
+	</dataObject>
+	<dataObject for="invalidBodyParameterKey">
+		<dataObject type="negative" data="invalidBodyParameterKey">
+			<parameterName>recruiterUsername</parameterName>
+			<invalidParameterKey>recruiterUername</invalidParameterKey>
+			<message>recruiterUsername is empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterKey">
+			<parameterName>candidateGlobalId</parameterName>
+			<invalidParameterKey>candidateGloblId</invalidParameterKey>
+			<message>candidate global id is null or empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterKey">
+			<parameterName>hrFeedback</parameterName>
+			<invalidParameterKey>hrFeedbak</invalidParameterKey>
+			<message>hrFeedback is null or empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterKey">
+			<parameterName>applyPosition</parameterName>
+			<invalidParameterKey>applliedPosition</invalidParameterKey>
+			<message>Apply Position is null or empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterKey">
+			<parameterName>applySeniority</parameterName>
+			<invalidParameterKey>applySenirity</invalidParameterKey>
+			<message>Apply Seniority is null or empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterKey">
+			<parameterName>interviewDate</parameterName>
+			<invalidParameterKey>interviwDate</invalidParameterKey>
+			<message>interview Date is null or empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterKey">
+			<parameterName>location</parameterName>
+			<invalidParameterKey>locations</invalidParameterKey>
+			<message>location is null or empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterKey">
+			<parameterName>candidateName</parameterName>
+			<invalidParameterKey>candidatName</invalidParameterKey>
+			<message>candidate name is null or empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterKey">
+			<parameterName>interviewType</parameterName>
+			<invalidParameterKey>intereviewType</invalidParameterKey>
+			<message>interview Type is null or empty</message>
+		</dataObject>
+	</dataObject>
+	<dataObject for="invalidBodyParameterValue">
+	<dataObject type="negative" data="invalidBodyParameterValue">
+			<parameterKey>recruiterUsername</parameterKey>
+			<parameterValue>deepakkumar.hadiyay</parameterValue>
+			<message>Not Found Entity with Id_</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterValue">
+			<parameterKey>applyPosition</parameterKey>
+			<parameterValue>109874645267</parameterValue>
+			<message>Not Found Entity with Id_</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterValue">
+			<parameterKey>applyPosition</parameterKey>
+			<parameterValue></parameterValue>
+			<message>Apply Position is null or empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterValue">
+			<parameterKey>applySeniority</parameterKey>
+			<parameterValue>3004</parameterValue>
+			<message>Not Found Entity with Id_</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterValue">
+			<parameterKey>applySeniority</parameterKey>
+			<parameterValue></parameterValue>
+			<message>Apply Seniority is null or empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterValue">
+			<parameterKey>location</parameterKey>
+			<parameterValue>IN/Pune/Hinjewa</parameterValue>
+			<message>Not Found Entity with location_</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterValue">
+			<parameterKey>interviewType</parameterKey>
+			<parameterValue>100096</parameterValue>
+			<message>Not Found Entity with Id_</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterValue">
+			<parameterKey>candidateName</parameterKey>
+			<parameterValue></parameterValue>
+			<message>candidate name is null or empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterValue">
+			<parameterKey>location</parameterKey>
+			<parameterValue></parameterValue>
+			<message>location is null or empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterValue">
+			<parameterKey>hrFeedback</parameterKey>
+			<parameterValue></parameterValue>
+			<message>hrFeedback is null or empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterValue">
+			<parameterKey>candidateGlobalId</parameterKey>
+			<parameterValue></parameterValue>
+			<message>candidate global id is null or empty</message>
+		</dataObject>
+		<dataObject type="negative" data="invalidBodyParameterValue">
+			<parameterKey>recruiterUsername</parameterKey>
+			<parameterValue></parameterValue>
+			<message>recruiterUsername is empty</message>
+		</dataObject>
+	</dataObject>
+</dataObjects>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Glow 7 Sanity Test Suite">
+
+	<groups>
+	<run>
+	<include name="Sanity"></include>
+	</run>
+	</groups>
+	<listeners>
+		<listener
+			class-name="listeners.DisableDataProviderIterationsForStaffing"></listener>
+	</listeners>
+
+  <test name="Interview Test Suite" >
+    <classes>
+      <class name="tests.testcases.submodules.interview.features.AcceptInterviewTest"/>
+      <class name="tests.testcases.submodules.interview.features.RejectInterviewTest"/>
+      <class name="tests.testcases.submodules.interview.features.InterviewRequestsOfGatekeeperTest"/>
+    </classes>
+  </test> </suite>

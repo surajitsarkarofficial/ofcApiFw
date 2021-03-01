@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+	    <dataScenario>Profile with profile image</dataScenario>
+	    <emailId>surajit.sarkar@globant.com</emailId>
+		<expectedStatusCode>200</expectedStatusCode>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Profile without profile image</dataScenario>
+	    <emailId>jinit.bansod@globant.com</emailId>
+		<expectedStatusCode>204</expectedStatusCode>
+	</dataObject>
+</dataObjects>

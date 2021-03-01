@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+	    <dataScenario>Casing mismatch</dataScenario>
+		<programType>Airline</programType>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Travel loyalty program with type :{programType} not found </expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Invalid Program Type</dataScenario>
+		<programType>CarService</programType>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Travel loyalty program with type :{programType} not found </expectedMessage>
+	</dataObject>
+</dataObjects>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Invalid Passenger Id</dataScenario>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>No frequent flyer details found for given id!</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Invalid Frequent Flyer Id</dataScenario>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>No frequent flyer details found for given id!</expectedMessage>
+	</dataObject>
+</dataObjects>

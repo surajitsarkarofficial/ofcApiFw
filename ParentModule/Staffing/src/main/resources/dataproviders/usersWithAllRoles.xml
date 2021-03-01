@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataObjects>
+				<dataObject>
+					<name>hazel.fernandes</name>
+					<value>Candidate</value>
+				</dataObject>
+				
+			    <dataObject>
+					<name>a.mazumder</name>
+					<value>Candidate</value>
+				</dataObject>
+			
+				<dataObject>
+					<name>anand.datir</name>
+					<value>Candidate</value>
+				</dataObject>
+				
+				<dataObject>
+					<name>kapil.kanojiya</name>
+					<value>Candidate</value>
+				</dataObject>
+</dataObjects>

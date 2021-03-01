@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Financial">
+
+  <groups>
+    <run>
+      <include name="Debug"/>
+    </run>
+  </groups>
+  
+  <test name="Benefit">
+        <packages>
+        	<package name="tests.testcases.submodules.benefit.features"/>
+        </packages>
+  </test>
+
+</suite>

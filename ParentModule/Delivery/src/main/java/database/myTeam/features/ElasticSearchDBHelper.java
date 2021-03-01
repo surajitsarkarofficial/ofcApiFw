@@ -1,0 +1,1272 @@
+package database.myTeam.features;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
+
+import database.myTeam.MyTeamDBHelper;
+
+/**
+ * @author imran.khan
+ *
+ */
+
+public class ElasticSearchDBHelper extends MyTeamDBHelper {
+
+	public ElasticSearchDBHelper() {	
+	}
+
+	/**
+	 * This method will return the all glober names by the keyword.
+	 * 
+	 * @param globerId
+	 * @param role
+	 * @param keyword
+	 * @return globerNames
+	 * @throws SQLException
+	 */
+	public Set<String> getGloberNameByKey(String globerId, String role, String key) throws SQLException {
+		String key1 = "%" + key + "%";
+		Set<String> hash_Set;
+		String query = "SELECT Assign_Data.assignment_id                   AS assignmentid, \r\n"
+				+ "       Assign_Data.glober_id                       AS globersid, \r\n"
+				+ "       Assign_Data.glober_name                     AS globersname, \r\n"
+				+ "       Assign_Data.project_id                      AS projectid, \r\n"
+				+ "       Assign_Data.project_name                    AS projectname, \r\n"
+				+ "       Assign_Data.pod_id                          AS podid, \r\n"
+				+ "       Assign_Data.pods_name                       AS podname, \r\n"
+				+ "       Assign_Data.client_id                       AS clientid, \r\n"
+				+ "       Assign_Data.client_name                     AS clientname, \r\n"
+				+ "       Concat(COALESCE(PM_Data.project_manager_id, ''), ',', \r\n"
+				+ "       COALESCE(APM_Data.associate_project_manager_id, ''), ',', \r\n"
+				+ "       COALESCE(DD_Data.delivery_director_id, '')) AS viewerslist \r\n"
+				+ "FROM   (SELECT a.id                                   AS assignment_id, \r\n"
+				+ "               g.id                                   AS glober_id, \r\n"
+				+ "               Concat(g.first_name, ' ', g.last_name) AS glober_name, \r\n"
+				+ "               pr.id                                  AS project_id, \r\n"
+				+ "               pr.NAME                                AS project_name, \r\n"
+				+ "               pods.id                                AS pod_id, \r\n"
+				+ "               pods.NAME                              AS pods_name, \r\n"
+				+ "               c.id                                   AS client_id, \r\n"
+				+ "               c.NAME                                 AS client_name \r\n"
+				+ "        FROM   assignments a \r\n" + "               LEFT OUTER JOIN projects pr \r\n"
+				+ "                            ON a.project_fk = pr.id \r\n"
+				+ "               LEFT OUTER JOIN clients c \r\n"
+				+ "                            ON pr.client_fk = c.id \r\n"
+				+ "               LEFT OUTER JOIN globers g \r\n"
+				+ "                            ON a.resume_fk = g.id \r\n"
+				+ "               LEFT OUTER JOIN positions pos \r\n"
+				+ "                            ON a.position_fk = pos.id \r\n"
+				+ "               LEFT OUTER JOIN pod_positions podpos \r\n"
+				+ "                            ON podpos.position = pos.id \r\n"
+				+ "               LEFT OUTER JOIN pods pods \r\n"
+				+ "                            ON pods.id = podpos.pod \r\n"
+				+ "        WHERE  g.username NOT LIKE 'old.%' \r\n"
+				+ "               AND pr.NAME NOT LIKE '%Talent Pool%' \r\n"
+				+ "               AND pr.NAME NOT LIKE '%OUT OF COMPANY%' \r\n"
+				+ "               AND pr.NAME NOT LIKE '%Maternity Leave%' \r\n"
+				+ "               AND pr.NAME NOT LIKE '%Vacaciones%' \r\n"
+				+ "               AND pr.NAME NOT LIKE '%Otros Ingresos%' \r\n"
+				+ "               AND pr.NAME NOT LIKE '%Licencia Sin Sueldo%' \r\n"
+				+ "               AND a.starting_date <= Now() \r\n" + "               AND ( a.end_date IS NULL \r\n"
+				+ "                      OR a.end_date > Now() )) Assign_Data \r\n"
+				+ "       LEFT OUTER JOIN (SELECT c.id                                           AS \r\n"
+				+ "                               client_id, \r\n"
+				+ "                               c.NAME                                         AS \r\n"
+				+ "       client_name, \r\n"
+				+ "                               Array_to_string(Array_agg(DISTINCT g.id), ',') AS \r\n"
+				+ "       delivery_director_id \r\n" + "                        FROM   projects pr \r\n"
+				+ "                               INNER JOIN positions pos \r\n"
+				+ "                                       ON pos.project_fk = pr.id \r\n"
+				+ "                               INNER JOIN position_roles posrol \r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id \r\n"
+				+ "                               LEFT OUTER JOIN assignments a \r\n"
+				+ "                                            ON a.position_fk = pos.id \r\n"
+				+ "                               LEFT OUTER JOIN globers g \r\n"
+				+ "                                            ON a.resume_fk = g.id \r\n"
+				+ "                               LEFT OUTER JOIN clients c \r\n"
+				+ "                                            ON pr.client_fk = c.id \r\n"
+				+ "                        WHERE  a.starting_date <= Now() \r\n"
+				+ "                               AND ( a.end_date IS NULL \r\n"
+				+ "                                      OR a.end_date > Now() ) \r\n"
+				+ "                               AND pr.contract_type = 'CLIENT' \r\n"
+				+ "                               AND posrol.id IN ( '72', '43535508' ) \r\n"
+				+ "                        GROUP  BY c.id) DD_Data \r\n"
+				+ "                    ON Assign_Data.client_id = DD_Data.client_id \r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS \r\n"
+				+ "                               project_id, \r\n"
+				+ "                               pr.NAME                                        AS \r\n"
+				+ "       project_name, \r\n"
+				+ "                               Array_to_string(Array_agg(DISTINCT g.id), ',') AS \r\n"
+				+ "       project_manager_id \r\n" + "                        FROM   projects pr \r\n"
+				+ "                               INNER JOIN positions pos \r\n"
+				+ "                                       ON pos.project_fk = pr.id \r\n"
+				+ "                               INNER JOIN position_roles posrol \r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id \r\n"
+				+ "                               LEFT OUTER JOIN assignments a \r\n"
+				+ "                                            ON a.position_fk = pos.id \r\n"
+				+ "                               LEFT OUTER JOIN globers g \r\n"
+				+ "                                            ON a.resume_fk = g.id \r\n"
+				+ "                               LEFT OUTER JOIN users u \r\n"
+				+ "                                            ON u.resume_fk = g.id \r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua \r\n"
+				+ "                                            ON aua.user_fk = u.id \r\n"
+				+ "                               LEFT OUTER JOIN authorities auth \r\n"
+				+ "                                            ON auth.id = aua.authority_fk \r\n"
+				+ "                        WHERE  posrol.id = '70' \r\n"
+				+ "                               AND auth.NAME IN ( 'PM', 'PA', 'TD', 'DD' ) \r\n"
+				+ "                               AND a.starting_date <= Now() \r\n"
+				+ "                               AND ( a.end_date IS NULL \r\n"
+				+ "                                      OR a.end_date > Now() ) \r\n"
+				+ "                        GROUP  BY pr.id) PM_Data \r\n"
+				+ "                    ON Assign_Data.project_id = PM_Data.project_id \r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS \r\n"
+				+ "                               project_id, \r\n"
+				+ "                               pr.NAME                                        AS \r\n"
+				+ "       project_name, \r\n"
+				+ "                               Array_to_string(Array_agg(DISTINCT g.id), ',') AS \r\n"
+				+ "                              associate_project_manager_id \r\n"
+				+ "                        FROM   projects pr \r\n"
+				+ "                               INNER JOIN positions pos \r\n"
+				+ "                                       ON pos.project_fk = pr.id \r\n"
+				+ "                               INNER JOIN position_roles posrol \r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id \r\n"
+				+ "                               LEFT OUTER JOIN assignments a \r\n"
+				+ "                                            ON a.position_fk = pos.id \r\n"
+				+ "                               LEFT OUTER JOIN globers g \r\n"
+				+ "                                            ON a.resume_fk = g.id \r\n"
+				+ "                               LEFT OUTER JOIN users u \r\n"
+				+ "                                            ON u.resume_fk = g.id \r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua \r\n"
+				+ "                                            ON aua.user_fk = u.id \r\n"
+				+ "                               LEFT OUTER JOIN authorities auth \r\n"
+				+ "                                            ON auth.id = aua.authority_fk \r\n"
+				+ "                        WHERE  posrol.id = '142' \r\n"
+				+ "                               AND auth.NAME IN ( 'PM', 'PA', 'TD', 'DD' ) \r\n"
+				+ "                               AND a.starting_date <= Now() \r\n"
+				+ "                               AND ( a.end_date IS NULL \r\n"
+				+ "                                      OR a.end_date > Now() ) \r\n"
+				+ "                        GROUP  BY pr.id) APM_Data \r\n"
+				+ "                    ON Assign_Data.project_id = APM_Data.project_id \r\n"
+				+ "					WHERE Assign_Data.glober_name iLIKE '" + key1 + "'" + "					AND " + role
+				+ "='" + globerId + "'" + "					ORDER  BY Assign_Data.assignment_id";
+		try {
+			ResultSet rs = getResultSet(query);
+			hash_Set = new HashSet<String>();
+			while (rs.next()) {
+				String str = rs.getString("globersname");
+				hash_Set.add(str);
+			}
+		} finally {
+			endConnection();
+		}
+		return hash_Set;
+	}
+
+	/**
+	 * This method will return the all project names by the keyword.
+	 * 
+	 * @param globerId
+	 * @param role
+	 * @param keyword
+	 * @return globerNames
+	 * @throws SQLException
+	 */
+	public Set<String> getProjectsNameByKey(String globerId, String role, String key) throws SQLException {
+		String key1 = "%" + key + "%";
+		Set<String> hash_Set;
+		String query = "SELECT\r\n" + "\r\n"
+				+ "       ASSIGN_DATA.project_name                        AS projectsname\r\n" + "\r\n"
+				+ "FROM   (SELECT a.id                                   AS assignment_id,\r\n" + "\r\n"
+				+ "               g.id                                   AS glober_id,\r\n" + "\r\n"
+				+ "               Concat(g.first_name, ' ', g.last_name) AS glober_name,\r\n" + "\r\n"
+				+ "               pr.id                                  AS project_id,\r\n" + "\r\n"
+				+ "               pr.NAME                                AS project_name,\r\n" + "\r\n"
+				+ "               pods.id                                AS pod_id,\r\n" + "\r\n"
+				+ "               pods.NAME                              AS pods_name,\r\n" + "\r\n"
+				+ "               c.id                                   AS client_id,\r\n" + "\r\n"
+				+ "               c.NAME                                 AS client_name\r\n" + "\r\n"
+				+ "        FROM   assignments a\r\n" + "\r\n" + "               LEFT OUTER JOIN projects pr\r\n"
+				+ "\r\n" + "                            ON a.project_fk = pr.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN positions pos\r\n" + "\r\n"
+				+ "                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN pod_positions podpos\r\n" + "\r\n"
+				+ "                            ON podpos.position = pos.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN pods pods\r\n" + "\r\n"
+				+ "                            ON pods.id = podpos.pod\r\n" + "\r\n"
+				+ "        WHERE  g.username NOT LIKE 'old.%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Talent Pool%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%OUT OF COMPANY%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Maternity Leave%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Vacaciones%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Otros Ingresos%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Licencia Sin Sueldo%'\r\n" + "\r\n"
+				+ "               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                      OR a.end_date > Now() )) ASSIGN_DATA\r\n" + "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT c.id                                           AS client_id,\r\n"
+				+ "\r\n"
+				+ "                               c.NAME                                         AS client_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id											  AS delivery_director_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'DD' )\r\n" + "\r\n"
+				+ "                        GROUP  BY c.id,g.id) DD_Data ON ASSIGN_DATA.client_id = DD_Data.client_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id										      AS project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '70'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PM' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n"
+				+ "									  \r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id,g.id) PM_Data ON ASSIGN_DATA.project_id = PM_Data.project_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id    										  AS associate_project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '142'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PA' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id,g.id) APM_Data\r\n" + "\r\n"
+				+ "                    ON ASSIGN_DATA.project_id = APM_Data.project_id\r\n" + "					\r\n"
+				+ "					WHERE ASSIGN_DATA.project_name iLIKE '" + key1 + "'" + "					AND "
+				+ role + "='" + globerId + "'" + "ORDER  BY ASSIGN_DATA.assignment_id";
+		try {
+			ResultSet rs = getResultSet(query);
+			hash_Set = new HashSet<String>();
+			while (rs.next()) {
+				String str = rs.getString("projectsname");
+				hash_Set.add(str);
+			}
+		} finally {
+			endConnection();
+		}
+		return hash_Set;
+	}
+
+	/**
+	 * This method will return the all pod names by the keyword.
+	 * 
+	 * @param globerId
+	 * @param role
+	 * @param keyword
+	 * @return globerNames
+	 * @throws SQLException
+	 */
+	public Set<String> getPodsNameByKey(String globerId, String role, String key) throws SQLException {
+		String key1 = "%" + key + "%";
+		Set<String> hash_Set;
+		String query = "SELECT\r\n" + "\r\n" + "       ASSIGN_DATA.pods_name                        AS podsname\r\n"
+				+ "\r\n" + "FROM   (SELECT a.id                                   AS assignment_id,\r\n" + "\r\n"
+				+ "               g.id                                   AS glober_id,\r\n" + "\r\n"
+				+ "               Concat(g.first_name, ' ', g.last_name) AS glober_name,\r\n" + "\r\n"
+				+ "               pr.id                                  AS project_id,\r\n" + "\r\n"
+				+ "               pr.NAME                                AS project_name,\r\n" + "\r\n"
+				+ "               pods.id                                AS pod_id,\r\n" + "\r\n"
+				+ "               pods.NAME                              AS pods_name,\r\n" + "\r\n"
+				+ "               c.id                                   AS client_id,\r\n" + "\r\n"
+				+ "               c.NAME                                 AS client_name\r\n" + "\r\n"
+				+ "        FROM   assignments a\r\n" + "\r\n" + "               LEFT OUTER JOIN projects pr\r\n"
+				+ "\r\n" + "                            ON a.project_fk = pr.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN positions pos\r\n" + "\r\n"
+				+ "                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN pod_positions podpos\r\n" + "\r\n"
+				+ "                            ON podpos.position = pos.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN pods pods\r\n" + "\r\n"
+				+ "                            ON pods.id = podpos.pod\r\n" + "\r\n"
+				+ "        WHERE  g.username NOT LIKE 'old.%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Talent Pool%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%OUT OF COMPANY%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Maternity Leave%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Vacaciones%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Otros Ingresos%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Licencia Sin Sueldo%'\r\n" + "\r\n"
+				+ "               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                      OR a.end_date > Now() )) ASSIGN_DATA\r\n" + "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT c.id                                           AS client_id,\r\n"
+				+ "\r\n"
+				+ "                               c.NAME                                         AS client_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id											  AS delivery_director_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'DD' )\r\n" + "\r\n"
+				+ "                        GROUP  BY c.id,g.id) DD_Data ON ASSIGN_DATA.client_id = DD_Data.client_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id										      AS project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '70'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PM' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n"
+				+ "									  \r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id,g.id) PM_Data ON ASSIGN_DATA.project_id = PM_Data.project_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id    										  AS associate_project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '142'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PA' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id,g.id) APM_Data\r\n" + "\r\n"
+				+ "                    ON ASSIGN_DATA.project_id = APM_Data.project_id\r\n" + "					\r\n"
+				+ "					WHERE ASSIGN_DATA.pods_name iLIKE '" + key1 + "'" + "					AND " + role
+				+ "='" + globerId + "'" + "ORDER  BY ASSIGN_DATA.assignment_id";
+		try {
+			ResultSet rs = getResultSet(query);
+			hash_Set = new HashSet<String>();
+			while (rs.next()) {
+				String str = rs.getString("podsname");
+				hash_Set.add(str);
+			}
+		} finally {
+			endConnection();
+		}
+		return hash_Set;
+	}
+
+	/**
+	 * This method will return all the client names by the keyword.
+	 * 
+	 * @param globerId
+	 * @param role
+	 * @param keyword
+	 * @return globerNames
+	 * @throws SQLException
+	 */
+	public Set<String> getClientsNameByKey(String globerId, String role, String key) throws SQLException {
+		String key1 = "%" + key + "%";
+		Set<String> hash_Set;
+		String query = "SELECT\r\n" + "\r\n"
+				+ "       ASSIGN_DATA.client_name                        AS clientsname\r\n" + "\r\n"
+				+ "FROM   (SELECT a.id                                   AS assignment_id,\r\n" + "\r\n"
+				+ "               g.id                                   AS glober_id,\r\n" + "\r\n"
+				+ "               Concat(g.first_name, ' ', g.last_name) AS glober_name,\r\n" + "\r\n"
+				+ "               pr.id                                  AS project_id,\r\n" + "\r\n"
+				+ "               pr.NAME                                AS project_name,\r\n" + "\r\n"
+				+ "               pods.id                                AS pod_id,\r\n" + "\r\n"
+				+ "               pods.NAME                              AS pods_name,\r\n" + "\r\n"
+				+ "               c.id                                   AS client_id,\r\n" + "\r\n"
+				+ "               c.NAME                                 AS client_name\r\n" + "\r\n"
+				+ "        FROM   assignments a\r\n" + "\r\n" + "               LEFT OUTER JOIN projects pr\r\n"
+				+ "\r\n" + "                            ON a.project_fk = pr.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN positions pos\r\n" + "\r\n"
+				+ "                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN pod_positions podpos\r\n" + "\r\n"
+				+ "                            ON podpos.position = pos.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN pods pods\r\n" + "\r\n"
+				+ "                            ON pods.id = podpos.pod\r\n" + "\r\n"
+				+ "        WHERE  g.username NOT LIKE 'old.%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Talent Pool%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%OUT OF COMPANY%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Maternity Leave%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Vacaciones%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Otros Ingresos%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Licencia Sin Sueldo%'\r\n" + "\r\n"
+				+ "               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                      OR a.end_date > Now() )) ASSIGN_DATA\r\n" + "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT c.id                                           AS client_id,\r\n"
+				+ "\r\n"
+				+ "                               c.NAME                                         AS client_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id											  AS delivery_director_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'DD' )\r\n" + "\r\n"
+				+ "                        GROUP  BY c.id,g.id) DD_Data ON ASSIGN_DATA.client_id = DD_Data.client_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id										      AS project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '70'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PM' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n"
+				+ "									  \r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id,g.id) PM_Data ON ASSIGN_DATA.project_id = PM_Data.project_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id    										  AS associate_project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '142'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PA' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id,g.id) APM_Data\r\n" + "\r\n"
+				+ "                    ON ASSIGN_DATA.project_id = APM_Data.project_id\r\n" + "					\r\n"
+				+ "					WHERE ASSIGN_DATA.client_name iLIKE '" + key1 + "'" + "					AND " + role
+				+ "='" + globerId + "'" + "ORDER  BY ASSIGN_DATA.assignment_id";
+		try {
+			ResultSet rs = getResultSet(query);
+			hash_Set = new HashSet<String>();
+			while (rs.next()) {
+				String str = rs.getString("clientsname");
+				hash_Set.add(str);
+			}
+		} finally {
+			endConnection();
+		}
+		return hash_Set;
+	}
+
+	/**
+	 * This method will return all the project names by the userId.
+	 * 
+	 * @param globerId
+	 * @param role
+	 * @param keyword
+	 * @return globerNames
+	 * @throws SQLException
+	 */
+	public Set<String> getProjectNameByUserId(String globerId, String role, String key) throws SQLException {
+		Set<String> hash_Set;
+		String query = "SELECT\r\n" + "\r\n"
+				+ "       ASSIGN_DATA.project_name                       AS projectname\r\n" + "\r\n"
+				+ "FROM   (SELECT a.id                                   AS assignment_id,\r\n" + "\r\n"
+				+ "               g.id                                   AS glober_id,\r\n" + "\r\n"
+				+ "               Concat(g.first_name, ' ', g.last_name) AS glober_name,\r\n" + "\r\n"
+				+ "               pr.id                                  AS project_id,\r\n" + "\r\n"
+				+ "               pr.NAME                                AS project_name,\r\n" + "\r\n"
+				+ "               pods.id                                AS pod_id,\r\n" + "\r\n"
+				+ "               pods.NAME                              AS pods_name,\r\n" + "\r\n"
+				+ "               c.id                                   AS client_id,\r\n" + "\r\n"
+				+ "               c.NAME                                 AS client_name\r\n" + "\r\n"
+				+ "        FROM   assignments a\r\n" + "\r\n" + "               LEFT OUTER JOIN projects pr\r\n"
+				+ "\r\n" + "                            ON a.project_fk = pr.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN positions pos\r\n" + "\r\n"
+				+ "                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN pod_positions podpos\r\n" + "\r\n"
+				+ "                            ON podpos.position = pos.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN pods pods\r\n" + "\r\n"
+				+ "                            ON pods.id = podpos.pod\r\n" + "\r\n"
+				+ "        WHERE  g.username NOT LIKE 'old.%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Talent Pool%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%OUT OF COMPANY%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Maternity Leave%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Vacaciones%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Otros Ingresos%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Licencia Sin Sueldo%'\r\n" + "\r\n"
+				+ "               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                      OR a.end_date > Now() )) ASSIGN_DATA\r\n" + "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT c.id                                           AS client_id,\r\n"
+				+ "\r\n"
+				+ "                               c.NAME                                         AS client_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id											  AS delivery_director_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'DD' )\r\n" + "\r\n"
+				+ "                        GROUP  BY c.id,g.id) DD_Data ON ASSIGN_DATA.client_id = DD_Data.client_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id										      AS project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '70'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PM' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n"
+				+ "									  \r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id,g.id) PM_Data ON ASSIGN_DATA.project_id = PM_Data.project_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id    										  AS associate_project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '142'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PA' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id,g.id) APM_Data\r\n" + "\r\n"
+				+ "                    ON ASSIGN_DATA.project_id = APM_Data.project_id\r\n" + "					\r\n"
+				+ "                   WHERE ASSIGN_DATA.project_name iLIKE '" + key + "'" + "					 AND "
+				+ role + "='" + globerId + "'" + "ORDER  BY ASSIGN_DATA.assignment_id";
+		try {
+			ResultSet rs = getResultSet(query);
+			hash_Set = new HashSet<String>();
+			while (rs.next()) {
+				String str = rs.getString("projectname");
+				hash_Set.add(str);
+			}
+		} finally {
+			endConnection();
+		}
+		return hash_Set;
+	}
+
+	/**
+	 * This method will return all the client name by the userId.
+	 * 
+	 * @param globerId
+	 * @param role
+	 * @param keyword
+	 * @return globerNames
+	 * @throws SQLException
+	 */
+	public Set<String> getClientNameByUserId(String globerId, String role, String key) throws SQLException {
+		Set<String> hash_Set;
+		String query = "SELECT\r\n" + "\r\n" + "       ASSIGN_DATA.client_name                       AS clientname\r\n"
+				+ "\r\n" + "FROM   (SELECT a.id                                   AS assignment_id,\r\n" + "\r\n"
+				+ "               g.id                                   AS glober_id,\r\n" + "\r\n"
+				+ "               Concat(g.first_name, ' ', g.last_name) AS glober_name,\r\n" + "\r\n"
+				+ "               pr.id                                  AS project_id,\r\n" + "\r\n"
+				+ "               pr.NAME                                AS project_name,\r\n" + "\r\n"
+				+ "               pods.id                                AS pod_id,\r\n" + "\r\n"
+				+ "               pods.NAME                              AS pods_name,\r\n" + "\r\n"
+				+ "               c.id                                   AS client_id,\r\n" + "\r\n"
+				+ "               c.NAME                                 AS client_name\r\n" + "\r\n"
+				+ "        FROM   assignments a\r\n" + "\r\n" + "               LEFT OUTER JOIN projects pr\r\n"
+				+ "\r\n" + "                            ON a.project_fk = pr.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN positions pos\r\n" + "\r\n"
+				+ "                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN pod_positions podpos\r\n" + "\r\n"
+				+ "                            ON podpos.position = pos.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN pods pods\r\n" + "\r\n"
+				+ "                            ON pods.id = podpos.pod\r\n" + "\r\n"
+				+ "        WHERE  g.username NOT LIKE 'old.%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Talent Pool%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%OUT OF COMPANY%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Maternity Leave%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Vacaciones%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Otros Ingresos%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Licencia Sin Sueldo%'\r\n" + "\r\n"
+				+ "               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                      OR a.end_date > Now() )) ASSIGN_DATA\r\n" + "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT c.id                                           AS client_id,\r\n"
+				+ "\r\n"
+				+ "                               c.NAME                                         AS client_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id											  AS delivery_director_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'DD' )\r\n" + "\r\n"
+				+ "                        GROUP  BY c.id,g.id) DD_Data ON ASSIGN_DATA.client_id = DD_Data.client_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id										      AS project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '70'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PM' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n"
+				+ "									  \r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id,g.id) PM_Data ON ASSIGN_DATA.project_id = PM_Data.project_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id    										  AS associate_project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '142'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PA' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id,g.id) APM_Data\r\n" + "\r\n"
+				+ "                    ON ASSIGN_DATA.project_id = APM_Data.project_id\r\n" + "					\r\n"
+				+ "					WHERE " + role + "='" + globerId + "'"
+				+ "					AND ASSIGN_DATA.client_name iLIKE '" + key + "'"
+				+ "ORDER  BY ASSIGN_DATA.assignment_id";
+		try {
+			ResultSet rs = getResultSet(query);
+			hash_Set = new HashSet<String>();
+			while (rs.next()) {
+				String str = rs.getString("clientname");
+				hash_Set.add(str);
+			}
+		} finally {
+			endConnection();
+		}
+		return hash_Set;
+	}
+
+	/**
+	 * This method will return all the pod name by the userId.
+	 * 
+	 * @param globerId
+	 * @param role
+	 * @param keyword
+	 * @return globerNames
+	 * @throws SQLException
+	 */
+	public Set<String> getPodNameByUserId(String globerId, String role, String key) throws SQLException {
+		Set<String> hash_Set;
+		String query = "SELECT\r\n" + "\r\n" + "       ASSIGN_DATA.pods_name                       AS podsname\r\n"
+				+ "\r\n" + "FROM   (SELECT a.id                                   AS assignment_id,\r\n" + "\r\n"
+				+ "               g.id                                   AS glober_id,\r\n" + "\r\n"
+				+ "               Concat(g.first_name, ' ', g.last_name) AS glober_name,\r\n" + "\r\n"
+				+ "               pr.id                                  AS project_id,\r\n" + "\r\n"
+				+ "               pr.NAME                                AS project_name,\r\n" + "\r\n"
+				+ "               pods.id                                AS pod_id,\r\n" + "\r\n"
+				+ "               pods.NAME                              AS pods_name,\r\n" + "\r\n"
+				+ "               c.id                                   AS client_id,\r\n" + "\r\n"
+				+ "               c.NAME                                 AS client_name\r\n" + "\r\n"
+				+ "        FROM   assignments a\r\n" + "\r\n" + "               LEFT OUTER JOIN projects pr\r\n"
+				+ "\r\n" + "                            ON a.project_fk = pr.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN positions pos\r\n" + "\r\n"
+				+ "                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN pod_positions podpos\r\n" + "\r\n"
+				+ "                            ON podpos.position = pos.id\r\n" + "\r\n"
+				+ "               LEFT OUTER JOIN pods pods\r\n" + "\r\n"
+				+ "                            ON pods.id = podpos.pod\r\n" + "\r\n"
+				+ "        WHERE  g.username NOT LIKE 'old.%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Talent Pool%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%OUT OF COMPANY%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Maternity Leave%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Vacaciones%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Otros Ingresos%'\r\n" + "\r\n"
+				+ "               AND pr.NAME NOT LIKE '%Licencia Sin Sueldo%'\r\n" + "\r\n"
+				+ "               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                      OR a.end_date > Now() )) ASSIGN_DATA\r\n" + "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT c.id                                           AS client_id,\r\n"
+				+ "\r\n"
+				+ "                               c.NAME                                         AS client_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id											  AS delivery_director_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'DD' )\r\n" + "\r\n"
+				+ "                        GROUP  BY c.id,g.id) DD_Data ON ASSIGN_DATA.client_id = DD_Data.client_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id										      AS project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '70'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PM' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n"
+				+ "									  \r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id,g.id) PM_Data ON ASSIGN_DATA.project_id = PM_Data.project_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               g.id    										  AS associate_project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '142'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PA' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id,g.id) APM_Data\r\n" + "\r\n"
+				+ "                    ON ASSIGN_DATA.project_id = APM_Data.project_id\r\n" + "					\r\n"
+				+ "					WHERE ASSIGN_DATA.pods_name iLIKE '" + key + "'" + "					AND " + role
+				+ "='" + globerId + "'" + "ORDER  BY ASSIGN_DATA.assignment_id";
+		try {
+			ResultSet rs = getResultSet(query);
+			hash_Set = new HashSet<String>();
+			while (rs.next()) {
+				String str = rs.getString("podsname");
+				hash_Set.add(str);
+			}
+		} finally {
+			endConnection();
+		}
+		return hash_Set;
+	}
+
+	/**
+	 * This method will return all the Sr Number by the position.
+	 * 
+	 * @param globerId
+	 * @param role
+	 * @param keyword
+	 * @return globerNames
+	 * @throws SQLException
+	 */
+	public Set<String> getSRNumberByPosition(String globerId, String role, String key) throws SQLException {
+		String key1 = "%" + key + "%";
+		Set<String> hash_Set;
+		String query = "SELECT POSITION_DATA.sr_number   AS srnumber\r\n" + "\r\n"
+				+ "FROM   (SELECT pos.id                   AS position_id,\r\n" + "\r\n"
+				+ "               pos.issue_tracker_number AS sr_number,\r\n" + "\r\n"
+				+ "               posrol.NAME              AS position_role_name,\r\n" + "\r\n"
+				+ "               possen.NAME              AS position_seniority_name,\r\n" + "\r\n"
+				+ "               pr.id                    AS project_id,\r\n" + "\r\n"
+				+ "               pr.NAME                  AS project_name,\r\n" + "\r\n"
+				+ "               c.id                     AS client_id,\r\n" + "\r\n"
+				+ "               c.NAME                   AS client_name\r\n" + "\r\n"
+				+ "        FROM   positions pos\r\n" + "\r\n" + "               INNER JOIN position_roles posrol\r\n"
+				+ "\r\n" + "                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "               INNER JOIN position_seniorities possen\r\n" + "\r\n"
+				+ "                       ON pos.position_seniority_fk = possen.id\r\n" + "\r\n"
+				+ "               INNER JOIN projects pr\r\n" + "\r\n"
+				+ "                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "               INNER JOIN clients c\r\n" + "\r\n"
+				+ "                       ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "        WHERE  pos.state = 'In Progress') POSITION_DATA\r\n" + "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT c.id                                           AS client_id,\r\n"
+				+ "\r\n"
+				+ "                               c.NAME                                         AS client_name,\r\n"
+				+ "\r\n"
+				+ "                               Array_to_string(Array_agg(DISTINCT g.id), ',') AS delivery_director_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'DD' )\r\n" + "\r\n"
+				+ "                        GROUP  BY c.id) DD_Data ON POSITION_DATA.client_id = DD_Data.client_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               Array_to_string(Array_agg(DISTINCT g.id), ',') AS project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '70'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PM' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id) PM_Data ON POSITION_DATA.project_id = PM_Data.project_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               Array_to_string(Array_agg(DISTINCT g.id), ',') AS associate_project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '142'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PA' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id) APM_Data\r\n" + "\r\n"
+				+ "                    ON POSITION_DATA.project_id = APM_Data.project_id\r\n"
+				+ "					WHERE POSITION_DATA.position_role_name iLIKE '" + key1 + "'"
+				+ "					AND " + role + "='" + globerId + "'";
+		try {
+			ResultSet rs = getResultSet(query);
+			hash_Set = new HashSet<String>();
+			while (rs.next()) {
+				String str = rs.getString("srnumber");
+				hash_Set.add(str);
+			}
+		} finally {
+			endConnection();
+		}
+		return hash_Set;
+	}
+
+	/**
+	 * This method will return all the Sr Number by the seniority.
+	 * 
+	 * @param globerId
+	 * @param role
+	 * @param keyword
+	 * @return globerNames
+	 * @throws SQLException
+	 */
+	public Set<String> getSRNumberBySeniority(String globerId, String role, String key) throws SQLException {
+		Set<String> hash_Set;
+		String query = "SELECT POSITION_DATA.sr_number   AS srnumber\r\n" + "\r\n"
+				+ "FROM   (SELECT pos.id                   AS position_id,\r\n" + "\r\n"
+				+ "               pos.issue_tracker_number AS sr_number,\r\n" + "\r\n"
+				+ "               posrol.NAME              AS position_role_name,\r\n" + "\r\n"
+				+ "               possen.NAME              AS position_seniority_name,\r\n" + "\r\n"
+				+ "               pr.id                    AS project_id,\r\n" + "\r\n"
+				+ "               pr.NAME                  AS project_name,\r\n" + "\r\n"
+				+ "               c.id                     AS client_id,\r\n" + "\r\n"
+				+ "               c.NAME                   AS client_name\r\n" + "\r\n"
+				+ "        FROM   positions pos\r\n" + "\r\n" + "               INNER JOIN position_roles posrol\r\n"
+				+ "\r\n" + "                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "               INNER JOIN position_seniorities possen\r\n" + "\r\n"
+				+ "                       ON pos.position_seniority_fk = possen.id\r\n" + "\r\n"
+				+ "               INNER JOIN projects pr\r\n" + "\r\n"
+				+ "                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "               INNER JOIN clients c\r\n" + "\r\n"
+				+ "                       ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "        WHERE  pos.state = 'In Progress') POSITION_DATA\r\n" + "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT c.id                                           AS client_id,\r\n"
+				+ "\r\n"
+				+ "                               c.NAME                                         AS client_name,\r\n"
+				+ "\r\n"
+				+ "                               Array_to_string(Array_agg(DISTINCT g.id), ',') AS delivery_director_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN clients c\r\n" + "\r\n"
+				+ "                                            ON pr.client_fk = c.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'DD' )\r\n" + "\r\n"
+				+ "                        GROUP  BY c.id) DD_Data ON POSITION_DATA.client_id = DD_Data.client_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               Array_to_string(Array_agg(DISTINCT g.id), ',') AS project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '70'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PM' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id) PM_Data ON POSITION_DATA.project_id = PM_Data.project_id\r\n"
+				+ "\r\n"
+				+ "       LEFT OUTER JOIN (SELECT pr.id                                          AS project_id,\r\n"
+				+ "\r\n"
+				+ "                               pr.NAME                                        AS project_name,\r\n"
+				+ "\r\n"
+				+ "                               Array_to_string(Array_agg(DISTINCT g.id), ',') AS associate_project_manager_id\r\n"
+				+ "\r\n" + "                        FROM   projects pr\r\n" + "\r\n"
+				+ "                               INNER JOIN positions pos\r\n" + "\r\n"
+				+ "                                       ON pos.project_fk = pr.id\r\n" + "\r\n"
+				+ "                               INNER JOIN position_roles posrol\r\n" + "\r\n"
+				+ "                                       ON pos.position_role_fk = posrol.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN assignments a\r\n" + "\r\n"
+				+ "                                            ON a.position_fk = pos.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN globers g\r\n" + "\r\n"
+				+ "                                            ON a.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN users u\r\n" + "\r\n"
+				+ "                                            ON u.resume_fk = g.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN available_users_authorities aua\r\n" + "\r\n"
+				+ "                                            ON aua.user_fk = u.id\r\n" + "\r\n"
+				+ "                               LEFT OUTER JOIN authorities auth\r\n" + "\r\n"
+				+ "                                            ON auth.id = aua.authority_fk\r\n" + "\r\n"
+				+ "                        WHERE  posrol.id = '142'\r\n" + "\r\n"
+				+ "                               AND auth.NAME IN ( 'PA' )\r\n" + "\r\n"
+				+ "                               AND a.starting_date <= Now()\r\n" + "\r\n"
+				+ "                               AND ( a.end_date IS NULL\r\n" + "\r\n"
+				+ "                                      OR a.end_date > Now() )\r\n" + "\r\n"
+				+ "                        GROUP  BY pr.id) APM_Data\r\n" + "\r\n"
+				+ "                    ON POSITION_DATA.project_id = APM_Data.project_id\r\n"
+				+ "					WHERE POSITION_DATA.position_seniority_name iLIKE '" + key + "'"
+				+ "					AND " + role + "='" + globerId + "'";
+		try {
+			ResultSet rs = getResultSet(query);
+			hash_Set = new HashSet<String>();
+			while (rs.next()) {
+				String str = rs.getString("srnumber");
+				hash_Set.add(str);
+			}
+		} finally {
+			endConnection();
+		}
+		return hash_Set;
+	}
+}

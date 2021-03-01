@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Empty Type</dataScenario>
+		<type> </type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Type is Invalid</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Invalid Type</dataScenario>
+		<type>CAB</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Type is Invalid</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Empty Passenger Id</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Provide one or more trip passengers</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Invalid Passenger Id</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>One or more of the given parameters does not exist</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Empty Start Date</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate> </startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Check start and end date. You are missing one or both of these parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Invalid Start Date</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-32T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Provide a valid start or end datetime</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Empty End Date</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate> </endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Check start and end date. You are missing one or both of these parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Invalid End Date</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-32T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Provide a valid start or end datetime</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Start Date is after End Date</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-04-16T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>The end date should be greater than the start date</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Empty start location</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation> </startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>One or more of the given parameters does not exist</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Invalid Start Location</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234567</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>One or more of the given parameters does not exist</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Empty End Location</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation> </endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>One or more of the given parameters does not exist</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Invalid End Location</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>7654321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>One or more of the given parameters does not exist</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing type</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>One or more of the given parameters does not exist</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing tripPassengersIds</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Provide one or more trip passengers</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing startDate</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Check start and end date. You are missing one or both of these parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing endDate</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Check start and end date. You are missing one or both of these parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing startLocation</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>One or more of the given parameters does not exist</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing endLocation</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>One or more of the given parameters does not exist</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Missing additionalDetails</dataScenario>
+		<type>CAR_RENTAL</type>
+		<tripPassengersIds></tripPassengersIds>
+		<startDate>2022-03-15T12:00:00</startDate>
+		<endDate>2022-04-15T12:00:00</endDate>
+		<startLocation>1234</startLocation>
+		<endLocation>4321</endLocation>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+</dataObjects>

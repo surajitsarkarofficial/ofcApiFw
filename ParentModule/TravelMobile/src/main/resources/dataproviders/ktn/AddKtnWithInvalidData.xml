@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+	    <dataScenario>Empty KTN</dataScenario>
+		<ktn></ktn>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>KTN with special characters</dataScenario>
+		<ktn>*()@#_+"',-</ktn>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>The Known traveler number should be alphanumeric value</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>KTN greater than 15 characters</dataScenario>
+		<ktn>ktnauto972456177</ktn>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>addKnownTravelerNumber.knownTravelerNumber: size must be between 0 and 15</expectedMessage>
+	</dataObject>
+</dataObjects>

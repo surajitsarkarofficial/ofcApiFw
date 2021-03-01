@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+	    <dataScenario>Non Existing IATA Code</dataScenario>
+		<location>P00</location>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Non Existing city name</dataScenario>
+		<location>mumbais</location>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Non Existing airport name</dataScenario>
+		<location>Punes International Airport</location>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Query Sequency not matching</dataScenario>
+		<location>International Pune Airport</location>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Search String is less than 3 characters</dataScenario>
+		<location>In</location>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>You must enter at least 3 characters to search</expectedMessage>
+	</dataObject>
+</dataObjects>

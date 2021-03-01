@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+	    <dataScenario>Empty Id</dataScenario>
+	    <id></id>
+		<name></name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Empty Name</dataScenario>
+	    <id></id>
+		<name></name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Empty Relationship</dataScenario>
+		<id></id>
+		<name>Auto </name>
+		<relationship></relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Empty PhoneNumber</dataScenario>
+		<id></id>
+		<name>Auto </name>
+		<relationship>Firend</relationship>
+		<phoneNumber></phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Empty ISO Country Code</dataScenario>
+		<id></id>
+		<name>Auto </name>
+		<relationship>Firend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode></isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Empty Address</dataScenario>
+		<id></id>
+		<name>Auto </name>
+		<relationship>Firend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address></address>
+		<expectedStatus>SUCCESS</expectedStatus>
+		<expectedMessage>Execution Successful</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Alphanumerics in the PhoneNumber</dataScenario>
+	    <id></id>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>98abDC78k0</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Invalid Passenger Id</dataScenario>
+	    <id></id>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Passenger is not valid hence contact not added</expectedMessage>
+	</dataObject>
+	<dataObject>
+	    <dataScenario>Invalid Emergency Contact Id</dataScenario>
+	    <id></id>
+		<name>Auto </name>
+		<relationship>Friend</relationship>
+		<phoneNumber>9756668811</phoneNumber>
+		<isoCountryCode>IN</isoCountryCode>
+		<address>D-709, YA Society, Baner, Pune,Maharashtra</address>
+		<expectedStatus>FAILURE</expectedStatus>
+		<expectedMessage>Emergency Contact is not valid hence contact not added</expectedMessage>
+	</dataObject>
+</dataObjects>

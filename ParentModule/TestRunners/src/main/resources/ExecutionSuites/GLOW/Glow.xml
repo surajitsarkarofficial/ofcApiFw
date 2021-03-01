@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="GLOW" verbose="2">
+
+<suite-files>
+                  <suite-file path="../Demo-Delivery/src/main/resources/Suites/Delivery.xml" />
+                  <suite-file path="../Demo-Staffing/src/main/resources/Suites/Staffing.xml" />
+</suite-files>
+</suite>

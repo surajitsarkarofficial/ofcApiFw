@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<!-- Trip with empty trip name -->
+	<dataObject>
+		<dataScenario>Invalid email id</dataScenario>	
+		<tripId></tripId>
+		<emailId>invaliduser@globant.com</emailId>
+		<expectedMessage>No records found to delete</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Invalid trip id</dataScenario>	
+		<tripId>000000</tripId>
+		<emailId>surajit.sarkar@globant.com</emailId>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>	
+	<dataObject>
+		<dataScenario>Not an existing watcher</dataScenario>	
+		<tripId></tripId>
+		<emailId></emailId>
+		<expectedMessage>No records found to delete</expectedMessage>
+	</dataObject>
+</dataObjects>

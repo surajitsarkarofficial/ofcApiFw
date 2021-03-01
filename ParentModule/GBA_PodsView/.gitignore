@@ -1,0 +1,8 @@
+/target/
+/test-output/
+/TestExecutionReport.pdf/
+/.classpath
+/Reports/
+/bin/
+/PdfReports/
+/GBA_PodsView.iml

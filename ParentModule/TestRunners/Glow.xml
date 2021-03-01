@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="GLOW" verbose="2">
+<suite-files>
+                  <suite-file path="../TravelMobile/TravelMobile.xml" />
+                  <suite-file path="../Delivery/Delivery.xml" />
+                  <suite-file path="../Financial/Financial.xml" />
+                  <suite-file path="../Staffing/Staffing.xml" />
+</suite-files>
+</suite>

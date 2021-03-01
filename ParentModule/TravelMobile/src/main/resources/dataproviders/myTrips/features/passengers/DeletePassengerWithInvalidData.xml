@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Empty Trip Passenger Id</dataScenario>
+		<tripPassengerId></tripPassengerId>
+		<statusCode>404</statusCode>
+		<expectedMessage></expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Invalid Trip Passenger Id</dataScenario>
+		<tripPassengerId>abcde</tripPassengerId>
+		<statusCode>404</statusCode>
+		<expectedMessage></expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Trip Passenger Id = 00000</dataScenario>
+		<tripPassengerId>00000</tripPassengerId>
+		<statusCode>200</statusCode>
+		<expectedMessage>Trip Passenger Id doesnt exist!</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Already deleted Trip Passenger Id</dataScenario>
+		<tripPassengerId></tripPassengerId>
+		<statusCode>200</statusCode>
+		<expectedMessage>Trip Passenger Id doesnt exist!</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Non Existing Trip Passenger Id</dataScenario>
+		<tripPassengerId>9999999</tripPassengerId>
+		<statusCode>200</statusCode>
+		<expectedMessage>Trip Passenger Id doesnt exist!</expectedMessage>
+	</dataObject>
+</dataObjects>

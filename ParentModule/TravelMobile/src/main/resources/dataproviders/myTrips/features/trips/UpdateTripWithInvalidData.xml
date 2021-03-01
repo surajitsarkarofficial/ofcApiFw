@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Missing trip id</dataScenario>
+		<tripId></tripId>
+		<status>DRAFT</status>	
+		<tripName>AutomationTrip_</tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail>surajit.sarkar@globant.com</creatorMail>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>	
+		<dataScenario>Missing Status</dataScenario>	
+		<tripId></tripId>
+		<status>DRAFT</status>	
+		<tripName>AutomationTrip_</tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail>surajit.sarkar@globant.com</creatorMail>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Status not in DRAFT state</dataScenario>	
+		<tripId></tripId>
+		<status>BOOKING_REQUESTED</status>
+		<tripName>AutomationTrip_</tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail>surajit.sarkar@globant.com</creatorMail>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>	
+	<dataObject>
+		<dataScenario>Empty trip id</dataScenario>
+		<tripId></tripId>
+		<status>DRAFT</status>	
+		<tripName></tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail>surajit.sarkar@globant.com</creatorMail>	
+		<expectedMessage>Invalid parameters</expectedMessage>	
+	</dataObject>
+	<dataObject>
+		<dataScenario>Empty Status</dataScenario>
+		<tripId></tripId>
+		<status></status>	
+		<tripName></tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail>surajit.sarkar@globant.com</creatorMail>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Empty trip name</dataScenario>
+		<tripId></tripId>
+		<status>DRAFT</status>	
+		<tripName></tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail>surajit.sarkar@globant.com</creatorMail>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Empty purpose and goals</dataScenario>
+		<tripId></tripId>
+		<status>DRAFT</status>	
+		<tripName>AutomationTrip_</tripName>
+		<purposeAndGoals></purposeAndGoals>
+		<creatorMail>surajit.sarkar@globant.com</creatorMail>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>	
+		<dataScenario>Empty creator mail</dataScenario>
+		<tripId></tripId>
+		<status>DRAFT</status>	
+		<tripName>AutomationTrip_</tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail></creatorMail>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>	
+		<dataScenario>Invalid creator mail</dataScenario>
+		<tripId></tripId>
+		<status>DRAFT</status>	
+		<tripName>AutomationTrip_</tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail>surajit.sarkar</creatorMail>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>	
+		<dataScenario>Mail id which does not exists</dataScenario>
+		<tripId></tripId>
+		<status>DRAFT</status>	
+		<tripName>AutomationTrip_</tripName>
+		<purposeAndGoals>Creating Trip for Test Automation</purposeAndGoals>
+		<creatorMail>surajit.sarkar@gmail.com</creatorMail>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+</dataObjects>

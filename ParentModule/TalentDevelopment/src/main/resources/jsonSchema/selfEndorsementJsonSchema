@@ -1,0 +1,197 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "statusCode": "OK",
+      "status": "STATUS_SUCCESS",
+      "message": "endorsements saved succesfull",
+      "rowCount": null,
+      "exportToExcel": false,
+      "validData": true,
+      "details": [
+        {
+          "id": 1,
+          "name": "Software Engineering",
+          "idPositionCapability": 3,
+          "value": 3
+        }
+      ],
+      "service": null
+    }
+  ],
+  "required": [
+    "statusCode",
+    "status",
+    "message",
+    "rowCount",
+    "exportToExcel",
+    "validData",
+    "details",
+    "service"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "statusCode": {
+      "$id": "#/properties/statusCode",
+      "type": "string",
+      "title": "The statusCode schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "OK"
+      ]
+    },
+    "status": {
+      "$id": "#/properties/status",
+      "type": "string",
+      "title": "The status schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "STATUS_SUCCESS"
+      ]
+    },
+    "message": {
+      "$id": "#/properties/message",
+      "type": "string",
+      "title": "The message schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "endorsements saved succesfull"
+      ]
+    },
+    "rowCount": {
+      "$id": "#/properties/rowCount",
+      "type": "null",
+      "title": "The rowCount schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": null,
+      "examples": [
+        null
+      ]
+    },
+    "exportToExcel": {
+      "$id": "#/properties/exportToExcel",
+      "type": "boolean",
+      "title": "The exportToExcel schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": false,
+      "examples": [
+        false
+      ]
+    },
+    "validData": {
+      "$id": "#/properties/validData",
+      "type": "boolean",
+      "title": "The validData schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "details": {
+      "$id": "#/properties/details",
+      "type": "array",
+      "title": "The details schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "examples": [
+        [
+          {
+            "id": 1,
+            "name": "Software Engineering",
+            "idPositionCapability": 3,
+            "value": 3
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "anyOf": [
+          {
+            "$id": "#/properties/details/items/anyOf/0",
+            "type": "object",
+            "title": "The first anyOf schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+              {
+                "id": 1,
+                "name": "Software Engineering",
+                "idPositionCapability": 3,
+                "value": 3
+              }
+            ],
+            "required": [
+              "id",
+              "name",
+              "idPositionCapability",
+              "value"
+            ],
+            "additionalProperties": true,
+            "properties": {
+              "id": {
+                "$id": "#/properties/details/items/anyOf/0/properties/id",
+                "type": "integer",
+                "title": "The id schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0,
+                "examples": [
+                  1
+                ]
+              },
+              "name": {
+                "$id": "#/properties/details/items/anyOf/0/properties/name",
+                "type": "string",
+                "title": "The name schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                  "Software Engineering"
+                ]
+              },
+              "idPositionCapability": {
+                "$id": "#/properties/details/items/anyOf/0/properties/idPositionCapability",
+                "type": "integer",
+                "title": "The idPositionCapability schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0,
+                "examples": [
+                  3
+                ]
+              },
+              "value": {
+                "$id": "#/properties/details/items/anyOf/0/properties/value",
+                "type": "integer",
+                "title": "The value schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0,
+                "examples": [
+                  3
+                ]
+              }
+            }
+          }
+        ],
+        "$id": "#/properties/details/items"
+      }
+    },
+    "service": {
+      "$id": "#/properties/service",
+      "type": "null",
+      "title": "The service schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": null,
+      "examples": [
+        null
+      ]
+    }
+  }
+}

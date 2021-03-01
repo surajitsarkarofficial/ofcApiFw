@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Empty Email Id</dataScenario>
+		<tripId></tripId>
+		<passengerMailId></passengerMailId>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	<dataScenario>Non Existing Trip Id</dataScenario>
+		<tripId>00000</tripId>
+		<passengerMailId>surajit.sarkar@globant.com</passengerMailId>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+	<dataObject>
+	<dataScenario>Invalid Email Id</dataScenario>
+		<tripId></tripId>
+		<passengerMailId>surajit.sarkar</passengerMailId>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>
+</dataObjects>

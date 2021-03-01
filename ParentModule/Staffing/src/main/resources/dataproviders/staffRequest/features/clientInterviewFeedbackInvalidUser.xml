@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<userName>aditya.thatte</userName>
+		<userRole>recruitingRolUser</userRole>
+	</dataObject>
+	<dataObject>
+		<userName>daniela.castro</userName>
+		<userRole>staffingRolUser</userRole>
+	</dataObject>
+</dataObjects> 

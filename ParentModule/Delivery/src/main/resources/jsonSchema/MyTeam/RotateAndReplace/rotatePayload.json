@@ -1,0 +1,9 @@
+{
+  "detailedReason": "string",
+  "load": 0,
+  "positionId": 0,
+  "rotationStartDate": "string",
+  "sowId": "string",
+  "globerId": 0,
+  "projectId": 0
+}

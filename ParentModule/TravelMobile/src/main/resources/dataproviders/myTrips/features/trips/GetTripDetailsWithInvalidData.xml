@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<dataObject>
+		<dataScenario>Empty Trip Id</dataScenario>
+		<tripId></tripId>
+		<expectedMessage></expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Invalid Trip Id</dataScenario>
+		<tripId>abcdef</tripId>
+		<expectedMessage></expectedMessage>
+	</dataObject>
+	<dataObject>
+		<dataScenario>Trip Id which does not exits</dataScenario>
+		<tripId>99999</tripId>
+		<expectedMessage>No trip with tripId 99999 found!</expectedMessage>
+	</dataObject>
+</dataObjects>

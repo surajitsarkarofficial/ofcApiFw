@@ -1,0 +1,11 @@
+{
+  "endDate": "string",
+  "globerId": 0,
+  "isOpening": true,
+  "positionId": 0,
+  "positionName": "string",
+  "projectId": 0,
+  "replacementReason": 0,
+  "startDate": "string",
+  "validateDates": true
+}

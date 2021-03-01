@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<dataObjects>
+	<!-- Trip with empty trip name -->
+	<dataObject>
+		<dataScenario>Invalid trip id</dataScenario>	
+		<tripId>000000</tripId>
+		<emailId>surajit.sarkar@globant.com</emailId>
+		<expectedMessage>Invalid parameters</expectedMessage>
+	</dataObject>	
+</dataObjects>
